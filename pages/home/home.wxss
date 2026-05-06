@@ -1,10 +1,12 @@
 /* AI辅助生成：豆包网页版，2026年3月10日 */
 .page {
-  min-height: 1408rpx;
+  width: 100%;
+  min-height: 100vh;
   background: #FFFFFF;
   padding-bottom: 160rpx;
   max-width: 450px;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 /* ===================== 顶部导航栏 ===================== */
