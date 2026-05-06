@@ -31,7 +31,8 @@
     }
   },
   "window": {
-    "backgroundTextStyle": "light"
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#FFFFFF"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
