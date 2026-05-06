@@ -1,5 +1,5 @@
 <!-- AI辅助生成：豆包网页版2026-->
-<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}" style="padding-top:{{statusBarHeight + 50}}px;--base-size:{{_baseFontSize}};">
+<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}" style="--base-size:{{_baseFontSize}};">
   <!-- ===================== 顶部导航 ===================== -->
   <view class="top-nav">
     <view class="nav-content" style="padding-top: {{statusBarHeight + 20}}px;">

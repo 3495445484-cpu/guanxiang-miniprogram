@@ -13,10 +13,7 @@
   max-width: 450px;
   margin: 0 auto;
   background: #FFFFFF;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 100;
 }
 

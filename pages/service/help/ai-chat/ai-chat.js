@@ -76,32 +76,6 @@ Page({
   },
 
   _doStartRecord() {
-    const rec = wx.getRecorderManager()
-    this._recorder = rec
-    this._recordingFilePath = null
-
-    rec.onStart(() => {
-      console.log('[录音] onStart')
-    })
-
-    rec.onStop((res) => {
-      console.log('[录音] onStop, tempFilePath:', res.tempFilePath)
-      this._recordingFilePath = res.tempFilePath
-    })
-
-    rec.onError((err) => {
-      console.error('[录音] onError:', err)
-      clearInterval(this._recordingTimer)
-      clearTimeout(this._recordTimeout)
-      this.setData({ isRecording: false, recordingTime: 0 })
-      wx.showModal({
-        title: '录音失败',
-        content: '错误: ' + (err.errMsg || err.errCode || '未知'),
-        showCancel: false,
-        confirmText: '我知道了'
-      })
-    })
-
     this.setData({ isRecording: true, recordingTime: 0 })
     this._recordingTimer = setInterval(() => {
       this.setData({ recordingTime: this.data.recordingTime + 1 })
@@ -114,12 +88,23 @@ Page({
       }
     }, 30000)
 
-    rec.start({
-      format: 'aac',
-      sampleRate: 16000,
-      numberOfChannels: 1,
-      encodeBitRate: 128000,
-      duration: 60000,
+    wx.startRecord({
+      success: (res) => {
+        console.log('[录音] startRecord成功:', res.tempFilePath)
+        this._recordingTempPath = res.tempFilePath
+      },
+      fail: (err) => {
+        console.error('[录音] startRecord失败:', err)
+        clearInterval(this._recordingTimer)
+        clearTimeout(this._recordTimeout)
+        this.setData({ isRecording: false, recordingTime: 0 })
+        wx.showModal({
+          title: '录音失败',
+          content: '错误: ' + (err.errMsg || err.errCode || '未知') + '\n请确认微信有录音权限',
+          showCancel: false,
+          confirmText: '我知道了'
+        })
+      }
     })
   },
 
@@ -128,22 +113,15 @@ Page({
     if (this.data.isUploading) return
     clearInterval(this._recordingTimer)
     clearTimeout(this._recordTimeout)
-    const rec = this._recorder
-    const savedPath = this._recordingFilePath
+    const path = this._recordingTempPath
     this.setData({ isRecording: false, recordingTime: 0, isUploading: true })
 
-    if (!rec) {
-      this.setData({ isUploading: false })
-      wx.showToast({ title: '录音未开始', icon: 'none' })
-      return
-    }
-
-    rec.stop({
+    wx.stopRecord({
       success: (res) => {
-        const path = res.tempFilePath || savedPath
+        const filePath = res.tempFilePath || path
         this.setData({ isUploading: false })
-        if (path) {
-          this._uploadVoice(path)
+        if (filePath) {
+          this._uploadVoice(filePath)
         } else {
           wx.showToast({ title: '录音文件无效', icon: 'none' })
         }
@@ -165,18 +143,16 @@ Page({
     clearTimeout(this._recordTimeout)
     clearInterval(this._recordingTimer)
     this.setData({ isRecording: false, recordingTime: 0 })
-    const rec = this._recorder
-    if (rec) {
-      rec.stop()
-    }
-    wx.showToast({ title: '已取消', icon: 'none', duration: 800 })
+    wx.stopRecord({
+      success: () => wx.showToast({ title: '已取消', icon: 'none', duration: 800 }),
+      fail: () => {}
+    })
   },
 
   _resetVoice() {
     clearTimeout(this._recordTimeout)
     clearInterval(this._recordingTimer)
     this.setData({ isRecording: false, recordingTime: 0 })
-    this._recordingFilePath = null
     this._recordingTempPath = null
   },
 
