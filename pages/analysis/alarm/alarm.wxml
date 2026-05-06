@@ -1,0 +1,88 @@
+<view class="page">
+  <!-- 导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">超限警报</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <view class="page-body">
+
+    <!-- 告警统计区 -->
+    <view class="section">
+      <text class="section-tip">当前园区待处理</text>
+      <view class="stat-header">
+        <view class="stat-main">
+          <text class="stat-num">{{totalCount}}</text>
+          <text class="stat-unit">项异常任务</text>
+        </view>
+        <view class="stat-badge">
+          <text class="stat-badge-text">实时监控中</text>
+        </view>
+      </view>
+      <!-- 统计卡片 -->
+      <view class="stat-card">
+        <view class="stat-item">
+          <view class="stat-dot red"></view>
+          <text class="stat-label">危及</text>
+          <text class="stat-count">{{criticalCount}}</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <view class="stat-dot yellow"></view>
+          <text class="stat-label">警告</text>
+          <text class="stat-count">{{warningCount}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待办事项区 -->
+    <view class="section">
+      <view class="todo-header">
+        <text class="todo-title">待办事项</text>
+        <text class="todo-tip">按时间倒序排列</text>
+      </view>
+
+      <!-- 警告卡片 -->
+      <view class="alert-card" wx:for="{{alertList}}" wx:key="index">
+        <view class="alert-card-top">
+          <view class="alert-icon-wrap" style="background:{{item.iconBg}};">
+            <image src="{{item.iconImg}}" style="width:20px;height:20px;" />
+          </view>
+          <view class="alert-top-right">
+            <view class="alert-tag {{item.level}}">
+              <text class="alert-tag-text">{{item.levelText}}</text>
+            </view>
+            <text class="alert-time">{{item.time}}</text>
+          </view>
+        </view>
+        <text class="alert-title">{{item.title}}</text>
+        <view class="alert-data">
+          <view class="alert-data-item">
+            <text class="alert-data-label">{{item.currentLabel}}</text>
+            <text class="alert-data-value {{item.level}}">{{item.currentValue}}</text>
+          </view>
+          <view class="alert-data-divider"></view>
+          <view class="alert-data-item">
+            <text class="alert-data-label">{{item.thresholdLabel}}</text>
+            <text class="alert-data-value">{{item.thresholdValue}}</text>
+          </view>
+        </view>
+        <view class="alert-btn {{item.level}}" bindtap="onAlertTap" data-id="{{item.id}}" data-title="{{item.title}}">
+          <text class="alert-btn-text">查看并处理 →</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部提示 -->
+    <view class="footer-tip">
+      <text class="footer-tip-text">已加载全部实时预警数据</text>
+    </view>
+
+  </view>
+</view>

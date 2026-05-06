@@ -1,0 +1,531 @@
+/* ===================== 全局 ===================== */
+.page {
+  min-height: 100vh;
+  background: #F5F6F8;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+/* ===================== CSS 变量：正常态(绿) ===================== */
+.page-body {
+  flex: 1;
+  padding: 160rpx 32rpx 32rpx;
+  box-sizing: border-box;
+  /* 主题色 */
+  --primary: #00A896;
+  --primary-alpha: rgba(0,168,150,0.15);
+  --primary-light: #E8F7F5;
+  --score-color: #00A896;
+  --chart-line: #00A090;
+  --chart-area-start: rgba(0,160,144,0.30);
+  --chart-area-end: rgba(0,160,144,0);
+  --std-line: #E0E0E0;
+  --status-card-border: transparent;
+  --status-text: #00A896;
+  --ai-card-bg: #00A896;
+  --ai-btn-bg: rgba(255,255,255,0.2);
+  --toggle-btn-bg: #00A090;
+}
+
+/* ===================== CSS 变量：预警态(黄) ===================== */
+.page-body.status-warning {
+  --primary: #FFB800;
+  --primary-alpha: rgba(255,184,0,0.15);
+  --primary-light: #FFF8E1;
+  --score-color: #FFB800;
+  --chart-line: #00A090;
+  --chart-area-start: rgba(0,160,144,0.30);
+  --chart-area-end: rgba(0,160,144,0);
+  --std-line: #E0E0E0;
+  --status-card-border: #FFB800;
+  --status-text: #FFB800;
+  --ai-card-bg: #FFB800;
+  --ai-btn-bg: rgba(0,0,0,0.15);
+  --toggle-btn-bg: #00A090;
+}
+
+/* ===================== CSS 变量：告警态(红) ===================== */
+.page-body.status-alert {
+  --primary: #FF3B30;
+  --primary-alpha: rgba(255,59,48,0.15);
+  --primary-light: #FFEBEA;
+  --score-color: #FF3B30;
+  --chart-line: #00A090;
+  --chart-area-start: rgba(0,160,144,0.30);
+  --chart-area-end: rgba(0,160,144,0);
+  --std-line: #E0E0E0;
+  --status-card-border: #FF3B30;
+  --status-text: #FF3B30;
+  --ai-card-bg: #FF3B30;
+  --ai-btn-bg: rgba(255,255,255,0.2);
+  --toggle-btn-bg: #00A090;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+}
+
+.nav-left {
+  width: 48rpx;
+  display: flex;
+  align-items: center;
+}
+
+.nav-back {
+  font-size: 44rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #00A896;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+
+/* ===================== 页面主体 ===================== */
+
+/* ===================== 园区选择行 ===================== */
+.park-row {
+  margin-bottom: 24rpx;
+}
+
+.park-selector {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  display: inline-flex;
+}
+
+.park-name {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.park-arrow {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+/* ===================== 通用模块容器 ===================== */
+.section {
+  margin-bottom: 32rpx;
+  padding: 0;
+}
+
+/* ===================== 标题行 ===================== */
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.section-title-main {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.section-update {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.section-title-badge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.badge-tick {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background: #00A090;
+  color: #FFFFFF;
+  font-size: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.badge-text {
+  font-size: 28rpx;
+  color: #00A090;
+  font-weight: 500;
+}
+
+/* ===================== 今日概况 2x2 网格 ===================== */
+.overview-grid { display: flex; flex-direction: column; gap: 20rpx; }
+.overview-row { display: flex; gap: 20rpx; }
+.overview-card { flex: 1; background: #FFFFFF; border-radius: 32rpx; padding: 36rpx 16rpx; box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; box-sizing: border-box; }
+.overview-label { font-size: 26rpx; color: #999999; text-align: center; white-space: nowrap; }
+.overview-value { font-size: 80rpx; font-weight: 700; color: #00A090; text-align: center; margin-top: 10rpx; line-height: 1; }
+
+.overview-value-light-yellow { color: #FBBF24 !important; }
+
+.overview-value-nutrient-red { color: #E53935 !important; }
+
+/* 预警/告警态：特定卡片变色 */
+.overview-card.is-alert .overview-value { color: var(--primary); }
+
+/* ===================== 环境趋势对比 ===================== */
+.chart-toggle-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.toggle-btn {
+  background: #00A090;
+  border-radius: 16rpx;
+  padding: 12rpx 24rpx;
+  flex-shrink: 0;
+}
+
+.toggle-btn-text {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.toggle-tags {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.toggle-tag {
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 32rpx;
+  white-space: nowrap;
+  padding: 8rpx 0;
+  border-radius: 8rpx;
+  margin-right: 48rpx;
+}
+
+.toggle-tag-text {
+  color: #999999;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.toggle-tag.active .toggle-tag-text {
+  color: #00A090;
+  font-weight: 600;
+  border-bottom: 2rpx solid #00A090;
+}
+
+/* 综合评分 */
+.score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.score-label {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 700;
+}
+
+.score-legend {
+  display: flex;
+  gap: 16rpx;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.legend-dot {
+  width: 24rpx;
+  height: 4rpx;
+  border-radius: 2rpx;
+}
+
+.legend-dot.score-dot { background: #00A090; }
+.legend-dot.gray { background: #E0E0E0; }
+
+.legend-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.score-main-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.score-big {
+  font-size: 72rpx;
+  font-weight: 700;
+  color: var(--score-color);
+  line-height: 1.1;
+}
+
+.score-change {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.score-arrow {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #00A090;
+}
+
+.score-change-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #00A090;
+}
+
+/* 折线图卡片 */
+.chart-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.chart-canvas {
+  width: 300px;
+  height: 280px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ===================== 详细数据 ===================== */
+.detail-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 28rpx 28rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 6rpx solid transparent;
+  box-sizing: border-box;
+}
+
+.detail-card.is-alert {
+  border-left: 6rpx solid var(--status-card-border);
+}
+
+.detail-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  flex: 1;
+}
+
+.detail-icon-bg {
+  width: 80rpx;
+  height: 80rpx;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.detail-icon {
+  font-size: 40rpx;
+  line-height: 1;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.detail-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+
+.detail-sub {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.detail-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6rpx;
+}
+
+.detail-big {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.detail-tag {
+  font-size: 22rpx;
+  color: var(--primary);
+}
+
+.detail-tag-green {
+  color: #00A090 !important;
+}
+
+.detail-tag-light {
+  color: #FBBF24 !important;
+}
+
+.detail-tag-normal {
+  color: #333333 !important;
+}
+
+.detail-big-normal {
+  color: #333333 !important;
+}
+
+/* ===================== AI 智能分析 ===================== */
+.ai-card {
+  background: var(--ai-card-bg);
+  border-radius: 32rpx;
+  padding: 32rpx 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.ai-header {
+  margin-bottom: 24rpx;
+}
+
+.ai-header-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block;
+}
+
+.ai-header-sub {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-top: 6rpx;
+}
+
+.ai-suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.ai-suggestion-dot {
+  font-size: 32rpx;
+  color: #FFFFFF;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.ai-suggestion-text {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 1.5;
+}
+
+.ai-action-btn {
+  background: var(--ai-btn-bg);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16rpx;
+}
+
+.ai-action-btn-text {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* ===================== 点击反馈 ===================== */
+.nav-left:active { opacity: 0.7; }
+.ai-action-btn:active { opacity: 0.8; }
+.detail-card:active { background: #FAFAFA; }
+
+/* ===================== 时间维度弹窗 ===================== */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 150;
+}
+
+.period-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 32rpx;
+  border-radius: 20rpx;
+  background: #F5F6F8;
+}
+
+.period-item.active {
+  background: var(--primary-light, #E8F7F5);
+  border: 2rpx solid var(--primary, #00A896);
+}
+
+.period-item-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.period-item-text.active {
+  color: var(--primary, #00A896);
+  font-weight: 600;
+}
+
+.period-item-check {
+  font-size: 30rpx;
+  color: var(--primary, #00A896);
+  font-weight: bold;
+}

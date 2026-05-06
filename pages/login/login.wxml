@@ -1,0 +1,78 @@
+<view class="flex-col page">
+  <view class="flex-col justify-start items-center self-center image-wrapper">
+    <image class="shrink-0 image" src="./img/Vector.png" />
+  </view>
+  <view class="flex-col self-stretch group" style="margin-top: -15px;">
+    <text class="self-center text">莞香智能种植管理系统</text>
+    <text class="self-center font text_2 mt-17">欢迎加入码喽科技</text>
+    <view class="flex-col self-stretch section">
+      <view class="flex-col self-stretch">
+        <text class="self-start font_2 text_3 text_4">账号 / 手机号</text>
+        <view class="mt-10 flex-row items-center self-stretch text-wrapper">
+          <image class="icon-avatar" src="./img/avatar.png" />
+          <input
+            class="font input-field"
+            type="text"
+            placeholder="请输入您的登录账号"
+            placeholder-class="placeholder"
+            value="{{accountValue}}"
+            bindinput="onAccountInput"
+            bindconfirm="onLogin"
+          />
+        </view>
+      </view>
+      <view class="flex-col self-stretch group_2">
+        <text class="self-start font_2 text_3 text_6">登录密码</text>
+        <view class="mt-10 flex-row items-center self-stretch section_2">
+          <image class="icon-lock" src="./img/lock1.png" />
+          <input
+            class="font input-field flex-1"
+            type="text"
+            password="{{!passwordVisible}}"
+            placeholder="请输入登录密码"
+            placeholder-class="placeholder"
+            value="{{passwordValue}}"
+            bindinput="onPasswordInput"
+            bindconfirm="onLogin"
+          />
+          <view class="icon-eye-wrapper" bindtap="togglePasswordVisible">
+            <image wx:if="{{passwordVisible}}" class="image-eye" src="./img/eyecansee.png" />
+            <image wx:if="{{!passwordVisible}}" class="image_2" src="./img/eyecantsee.png" />
+          </view>
+        </view>
+      </view>
+      <view class="flex-row justify-between items-center self-stretch group_3">
+        <view class="flex-row items-center" bindtap="toggleRememberMe">
+          <image wx:if="{{rememberMe}}" class="icon-checkbox" src="./img/checkbox-checked.png" />
+          <view wx:if="{{!rememberMe}}" class="shrink-0 section_3"></view>
+          <text class="font_3 text_8 ml-9">记住我</text>
+        </view>
+        <text class="font_4 text_9" bindtap="goResetPassword">忘记密码?</text>
+      </view>
+      <view class="flex-col justify-start items-center self-stretch text-wrapper_2" bindtap="onLogin">
+        <text class="text_10">立即登录</text>
+      </view>
+      <view class="self-center group_4">
+        <text class="font_3 text_11">还没有账号？</text>
+        <text class="font_4" bindtap="goRegister">立即注册</text>
+      </view>
+      <view class="flex-col justify-start self-stretch relative group_5">
+        <view class="divider"></view>
+        <view class="flex-col justify-start items-center text-wrapper_3 pos">
+          <text class="font_2 text_3 text_12">其他方式登录</text>
+        </view>
+      </view>
+      <view class="flex-row equal-division">
+        <view class="flex-row items-center section_4 equal-division-item" bindtap="goWxLogin">
+          <image class="image_3" src="./img/message1.png" />
+          <text class="ml-8 font_3 text_13">微信登录</text>
+        </view>
+        <view class="flex-row items-center section_4 equal-division-item" bindtap="goPhoneLogin">
+          <image class="shrink-0 image_3" src="./img/message2.png" />
+          <text class="ml-8 font_3 text_14">手机验证码登录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <text class="self-center font_3 text_3 text_15">© 2024 莞香智能管理平台. 保留所有权利。</text>
+</view>

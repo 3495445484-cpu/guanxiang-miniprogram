@@ -1,0 +1,122 @@
+<view class="page">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+        <text class="nav-title-left">在线咨询</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 聊天区域 -->
+  <scroll-view class="chat-body" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltoupper="onScroll">
+    <view class="ai-header">
+      <view class="ai-avatar-wrap">
+        <view class="ai-avatar">
+          <image class="ai-avatar-icon" src="Agent.png" style="width:80rpx;height:80rpx;border-radius:50%;" mode="aspectFit" />
+        </view>
+      </view>
+      <text class="ai-welcome-title">欢迎使用 AI 农事助理</text>
+      <text class="ai-welcome-desc">您可以询问有关土壤健康、病虫害管理或灌溉优化的问题。</text>
+    </view>
+
+    <view class="date-divider">
+      <text class="date-text">今天</text>
+    </view>
+
+    <view class="bubble-row ai-row">
+      <view class="bubble-avatar ai-avatar-small" style="width:72rpx;height:72rpx;">
+        <image class="bubble-avatar-icon" src="Agent.png" style="width:30px;height:20px;border-radius:50%;display:block;" mode="aspectFit" />
+      </view>
+      <view class="bubble-main">
+        <view class="bubble ai-bubble">
+          <text class="bubble-text" bindtap="onSpeak" data-text="您好，老乡！我是您的农场小管家。您有什么问题？点击下方选项，我来帮您解决。">您好，老乡！我是您的农场小管家。您有什么问题？点击下方选项，我来帮您解决。</text>
+        </view>
+        <text class="bubble-time ai-time">10:24 AM</text>
+      </view>
+    </view>
+
+    <block wx:for="{{messages}}" wx:key="index">
+      <view class="bubble-row user-row">
+        <view class="bubble-main user-main">
+          <view class="bubble user-bubble">
+            <text class="bubble-text">{{item.question}}</text>
+          </view>
+          <text class="bubble-time">{{item.time}}</text>
+        </view>
+      </view>
+      <view class="bubble-row ai-row" wx:if="{{item.answer}}">
+        <view class="bubble-avatar ai-avatar-small" style="width:72rpx;height:72rpx;">
+          <image class="bubble-avatar-icon" src="Agent.png" style="width:20px;height:20px;border-radius:50%;display:block;" mode="aspectFit" />
+        </view>
+        <view class="bubble-main">
+          <view class="bubble ai-bubble">
+            <text class="bubble-text" bindtap="onSpeak" data-text="{{item.answer}}">{{item.answer}}</text>
+          </view>
+          <text class="bubble-time ai-time">{{item.time}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view class="bubble-row ai-row" wx:if="{{loading}}">
+      <view class="bubble-avatar ai-avatar-small" style="width:72rpx;height:72rpx;">
+        <image class="bubble-avatar-icon" src="Agent.png" style="width:20px;height:20px;border-radius:50%;display:block;" mode="aspectFit" />
+      </view>
+      <view class="bubble-main">
+        <view class="bubble ai-bubble loading-bubble">
+          <text class="bubble-text loading-dots">思考中</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 40rpx;"></view>
+  </scroll-view>
+
+  <!-- 快捷提问 -->
+  <view class="quick-section">
+    <view class="quick-header">
+      <text class="quick-label">⚡</text>
+      <text class="quick-title">快捷提问</text>
+    </view>
+    <view class="quick-btns">
+      <view class="quick-btn" wx:for="{{quickQuestions}}" wx:key="index" bindtap="onQuickTap" data-q="{{item}}">
+        <text class="quick-btn-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部输入框 -->
+  <view class="input-bar">
+    <view class="input-wrap">
+      <!-- 正常文字输入模式 -->
+      <input wx:if="{{!isRecording}}" class="input-field" type="text" value="{{inputText}}" placeholder="输入您的问题..." placeholder-class="input-placeholder" bindinput="onInput" bindconfirm="onSend" confirm-type="send" cursor-spacing="20rpx" />
+
+      <!-- 录音中模式 -->
+      <view wx:if="{{isRecording}}" class="recording-center">
+        <text class="recording-dot">●</text>
+        <text class="recording-time">{{recordingTime}}"</text>
+      </view>
+
+      <!-- 麦克风按钮：非录音时点击开始 -->
+      <view wx:if="{{!isRecording}}" class="voice-btn" bindtap="onVoiceTap">
+        <text class="voice-btn-icon">🎙️</text>
+      </view>
+
+      <!-- 停止/发送按钮：录音中点击停止并发送 -->
+      <view wx:if="{{isRecording}}" class="voice-send-btn" bindtap="onVoiceTap">
+        <text class="voice-send-icon">➤</text>
+      </view>
+
+      <!-- 取消按钮（录音中有效） -->
+      <view wx:if="{{isRecording}}" class="cancel-btn" bindtap="onVoiceCancel">
+        <text class="cancel-btn-text">取消</text>
+      </view>
+
+      <!-- 发送按钮（非录音时有效） -->
+      <view wx:if="{{!isRecording}}" class="send-btn" bindtap="onSend">
+        <text class="send-icon">➤</text>
+      </view>
+    </view>
+  </view>
+</view>

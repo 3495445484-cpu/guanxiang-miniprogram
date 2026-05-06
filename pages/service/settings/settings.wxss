@@ -1,0 +1,262 @@
+/* ===================== 全局 ===================== */
+page {
+  background: #F5F6F8;
+}
+.page {
+  min-height: 100vh;
+  background: #F5F6F8;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+}
+.nav-left {
+  width: 48rpx;
+  display: flex;
+  align-items: center;
+}
+.nav-back {
+  font-size: 44rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+.nav-title {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #00A896;
+}
+.nav-right {
+  width: 48rpx;
+}
+
+/* ===================== 页面主体 ===================== */
+.page-body {
+  padding: 192rpx 32rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* ===================== 模块 ===================== */
+.module {
+  margin-bottom: 32rpx;
+}
+
+.module-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 20rpx;
+}
+
+/* ===================== 设置卡片 ===================== */
+.settings-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+/* ===================== 设置条目 ===================== */
+.setting-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 32rpx 28rpx;
+  gap: 24rpx;
+}
+
+.setting-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+  flex: 1;
+}
+
+.setting-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  background: #E8F7F5;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.setting-icon {
+  font-size: 36rpx;
+}
+
+.setting-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.setting-info.full-width {
+  flex: 1;
+}
+
+.setting-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.setting-desc {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 1.4;
+}
+
+.setting-divider {
+  height: 1rpx;
+  background: #F0F0F0;
+  margin: 0 28rpx;
+}
+
+/* ===================== 开关 ===================== */
+.setting-switch {
+  flex-shrink: 0;
+  padding-top: 8rpx;
+}
+.switch-track {
+  width: 96rpx;
+  height: 56rpx;
+  background: #00A896;
+  border-radius: 28rpx;
+  padding: 6rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.switch-track.off-track {
+  background: #E0E0E0;
+  justify-content: flex-start;
+}
+.switch-thumb {
+  width: 44rpx;
+  height: 44rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+}
+.switch-thumb.off-thumb {
+  background: #FFFFFF;
+}
+
+/* ===================== 字体进度条 ===================== */
+.font-progress {
+  margin-top: 12rpx;
+}
+.font-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12rpx;
+  padding: 0 4rpx;
+}
+.font-opt {
+  font-size: 24rpx;
+  color: #999999;
+  font-weight: 400;
+}
+.font-opt.active {
+  color: #00A896;
+  font-weight: 700;
+}
+
+/* 原生 slider 样式覆盖 */
+.font-slider {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* ===================== 深色模式 ===================== */
+.page.dark {
+  background: #1A1A1A;
+}
+.page.dark .nav-bar {
+  background: #1A1A1A;
+}
+.page.dark .nav-title,
+.page.dark .nav-back {
+  color: #00A896;
+}
+.page.dark .module-title,
+.page.dark .setting-name {
+  color: #FFFFFF;
+}
+.setting-version-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 160rpx;
+}
+.setting-version {
+  font-size: 20rpx;
+  color: #333333;
+  white-space: nowrap;
+}
+.setting-version-desc {
+  font-size: 18rpx;
+  color: #999999;
+  white-space: nowrap;
+}
+.page.dark .setting-desc {
+  color: #888888;
+}
+.page.dark .settings-card {
+  background: #2C2C2C;
+}
+.page.dark .setting-icon-wrap {
+  background: rgba(0, 168, 150, 0.2);
+}
+.page.dark .setting-divider {
+  background: #3C3C3C;
+}
+
+/* ===================== 字体大小 ===================== */
+.page.font-0 { --base-font: 28rpx; }
+.page.font-1 { --base-font: 32rpx; }
+.page.font-2 { --base-font: 36rpx; }
+.page.font-3 { --base-font: 40rpx; }
+
+.page.font-0 .setting-name { font-size: 28rpx; }
+.page.font-0 .setting-version { font-size: 20rpx; }
+.page.font-0 .setting-version-desc { font-size: 18rpx; }
+.page.font-0 .setting-desc { font-size: 24rpx; }
+.page.font-0 .module-title { font-size: 36rpx; }
+
+.page.font-1 .setting-name { font-size: 32rpx; }
+.page.font-1 .setting-version { font-size: 24rpx; }
+.page.font-1 .setting-version-desc { font-size: 22rpx; }
+.page.font-1 .setting-desc { font-size: 28rpx; }
+.page.font-1 .module-title { font-size: 40rpx; }
+
+.page.font-2 .setting-name { font-size: 36rpx; }
+.page.font-2 .setting-version { font-size: 28rpx; }
+.page.font-2 .setting-version-desc { font-size: 26rpx; }
+.page.font-2 .setting-desc { font-size: 32rpx; }
+.page.font-2 .module-title { font-size: 44rpx; }
+
+.page.font-3 .setting-name { font-size: 40rpx; }
+.page.font-3 .setting-version { font-size: 32rpx; }
+.page.font-3 .setting-version-desc { font-size: 30rpx; }
+.page.font-3 .setting-desc { font-size: 36rpx; }
+.page.font-3 .module-title { font-size: 48rpx; }

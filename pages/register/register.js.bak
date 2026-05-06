@@ -1,0 +1,163 @@
+const app = getApp()
+
+Page({
+  data: {
+    phone: '',
+    code: '',
+    nickname: '',
+    password: '',
+    confirmPassword: '',
+    toastMsg: '',
+    countdown: 0,
+    showPassword: false,
+    showConfirmPassword: false,
+    agreed: false,
+  },
+
+  onLoad() {
+    const sysInfo = wx.getSystemInfoSync()
+    this.setData({ statusBarHeight: sysInfo.statusBarHeight || 20 })
+    if (app.globalData.userId) {
+      wx.reLaunch({ url: '/pages/home/home' })
+    }
+  },
+
+  onPhoneInput(e) {
+    this.setData({ phone: e.detail.value })
+  },
+
+  onCodeInput(e) {
+    this.setData({ code: e.detail.value })
+  },
+
+  onNicknameInput(e) {
+    this.setData({ nickname: e.detail.value })
+  },
+
+  onPasswordInput(e) {
+    this.setData({ password: e.detail.value })
+  },
+
+  onConfirmPasswordInput(e) {
+    this.setData({ confirmPassword: e.detail.value })
+  },
+
+  // 发送验证码
+  onSendCode() {
+    if (this.data.countdown > 0) return
+    const phone = this.data.phone
+    if (!phone || phone.length !== 11) {
+      wx.showToast({ title: '请输入正确的手机号', icon: 'none' })
+      return
+    }
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/auth/send-code`,
+      method: 'POST',
+      header: { 'Content-Type': 'application/json' },
+      data: { phone },
+      success: (res) => {
+        if (res.data.code === 200) {
+          const code = res.data.data && res.data.data.code ? res.data.data.code : ''
+          if (code) {
+            wx.showModal({
+              title: '验证码',
+              content: '您的验证码是：' + code,
+              showCancel: false
+            })
+          } else {
+            wx.showToast({ title: '验证码已发送', icon: 'success' })
+          }
+          this.setData({ countdown: 60 })
+          this.startCountdown()
+        } else {
+          wx.showToast({ title: res.data.msg || '发送失败', icon: 'none' })
+        }
+      },
+      fail: () => {
+        wx.showToast({ title: '网络错误', icon: 'none' })
+      }
+    })
+  },
+
+  startCountdown() {
+    const timer = setInterval(() => {
+      const c = this.data.countdown - 1
+      if (c <= 0) {
+        clearInterval(timer)
+        this.setData({ countdown: 0 })
+      } else {
+        this.setData({ countdown: c })
+      }
+    }, 1000)
+  },
+
+  // 切换密码可见
+  toggleShowPassword() {
+    this.setData({ showPassword: !this.data.showPassword })
+  },
+
+  toggleShowConfirmPassword() {
+    this.setData({ showConfirmPassword: !this.data.showConfirmPassword })
+  },
+
+  // 协议勾选
+  toggleAgreement() {
+    this.setData({ agreed: !this.data.agreed })
+  },
+
+  onTermsTap() {
+    wx.showToast({ title: '服务条款', icon: 'none' })
+  },
+
+  onPrivacyTap() {
+    wx.showToast({ title: '隐私政策', icon: 'none' })
+  },
+
+  // 注册
+  onRegister() {
+    const { phone, code, nickname, password, confirmPassword, agreed } = this.data
+    if (!phone || phone.length !== 11) {
+      wx.showToast({ title: '请输入正确的手机号', icon: 'none' })
+      return
+    }
+    if (!code || code.length !== 6) {
+      wx.showToast({ title: '请输入6位验证码', icon: 'none' })
+      return
+    }
+    if (!password || password.length < 8) {
+      wx.showToast({ title: '密码需8-16位', icon: 'none' })
+      return
+    }
+    if (password !== confirmPassword) {
+      wx.showToast({ title: '两次密码不一致', icon: 'none' })
+      return
+    }
+    if (!agreed) {
+      wx.showToast({ title: '请先同意服务条款和隐私政策', icon: 'none' })
+      return
+    }
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/auth/register`,
+      method: 'POST',
+      header: { 'Content-Type': 'application/json' },
+      data: { phone, code, password, nickname },
+      success: (res) => {
+        if (res.data.code === 200) {
+          wx.showToast({ title: '注册成功！', icon: 'success' })
+          setTimeout(() => {
+            wx.reLaunch({ url: '/pages/login/login' })
+          }, 1500)
+        } else {
+          wx.showToast({ title: res.data.msg || '注册失败', icon: 'none' })
+        }
+      },
+      fail: () => {
+        wx.showToast({ title: '网络错误', icon: 'none' })
+      }
+    })
+  },
+
+  goBack() {
+    wx.navigateBack()
+  }
+})

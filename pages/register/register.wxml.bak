@@ -1,0 +1,78 @@
+<view class="flex-col page">
+  <view class="flex-row items-center section" style="padding-top: {{statusBarHeight + 14}}px;">
+    <image class="image" src="img/9d2ca77f7cba70b509257102b4c4b8de.png" bindtap="goBack" />
+    <text class="ml-16 font text">创建账户</text>
+  </view>
+
+  <view class="flex-col group mt-18">
+    <view class="flex-col justify-start items-center self-center image-wrapper">
+      <image class="image_2" src="img/a55cad8d200aa272772d0990ebe51b62.png" />
+    </view>
+
+    <view class="mt-28 flex-col self-stretch">
+      <text class="self-center text_2">欢迎加入码喽科技</text>
+      <text class="mt-16 self-center font_2 text_3">填写以下信息，开启您的智慧耕作之旅</text>
+
+      <view class="mt-16 flex-col self-stretch section_2">
+        <view class="flex-col">
+          <text class="self-start font_3 text_4">手机号码</text>
+          <view class="mt-10 flex-col justify-start items-start self-stretch text-wrapper" style="display: flex; flex-direction: row; align-items: center;">
+            <image class="icon-phone" src="img/phone.png" />
+            <input class="font_2 text_5 text-input" type="number" maxlength="11" placeholder="请输入手机号" placeholder-style="color: #3C49464D; font-size: 14px;" value="{{phone}}" bindinput="onPhoneInput" />
+          </view>
+        </view>
+
+        <view class="flex-col group_2">
+          <text class="self-start font_3 text_4 text_7">短信验证码</text>
+          <view class="flex-row self-stretch mt-11">
+            <view class="flex-1 text-wrapper_2" style="display: flex; flex-direction: row; align-items: center;">
+              <image class="input-icon" src="img/safe.png" />
+              <input class="font_2 text_8 text-input" type="number" maxlength="6" placeholder="请输入验证码" placeholder-style="color: #3C49464D; font-size: 14px;" value="{{code}}" bindinput="onCodeInput" />
+            </view>
+            <view class="flex-col justify-start items-center shrink-0 text-wrapper_3 ml-11 {{countdown > 0 ? 'btn-disabled' : ''}}" bindtap="{{countdown > 0 ? '' : 'onSendCode'}}">
+              <text class="font_4 {{countdown > 0 ? 'countdown-text' : 'text_9'}}">{{countdown > 0 ? countdown + 's' : '获取验证码'}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="flex-col group_3">
+          <text class="self-start font_3 text_4">新密码</text>
+          <view class="flex-row items-center self-stretch text-wrapper">
+            <image class="input-icon" src="img/lock1.png" />
+            <input class="font_2 text_5 text-input" type="text" password="{{!showPassword}}" placeholder="请设置新密码" placeholder-style="color: #3C49464D; font-size: 14px;" value="{{password}}" bindinput="onPasswordInput" />
+            <view class="eye-wrapper" bindtap="toggleShowPassword">
+              <image wx:if="{{showPassword}}" class="eye-icon-visible" src="img/eyecansee.png" />
+              <image wx:if="{{!showPassword}}" class="eye-icon-hidden" src="img/eyecantsee.png" />
+            </view>
+          </view>
+          <text class="self-start font_3 text_4 text_10 mt-16">确认新密码</text>
+          <view class="flex-row items-center self-stretch text-wrapper">
+            <image class="icon-lock2" src="img/lock2.png" />
+            <input class="font_2 text_5 text-input" type="text" password="{{!showConfirmPassword}}" placeholder="请再次输入新密码" placeholder-style="color: #3C49464D; font-size: 14px;" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+            <view class="eye-wrapper" bindtap="toggleShowConfirmPassword">
+              <image wx:if="{{showConfirmPassword}}" class="eye-icon-visible" src="img/eyecansee.png" />
+              <image wx:if="{{!showConfirmPassword}}" class="eye-icon-hidden" src="img/eyecantsee.png" />
+            </view>
+          </view>
+        </view>
+
+        <view class="flex-col group_4">
+          <view class="flex-col group_5">
+            <view class="flex-row self-stretch" style="align-items: center; justify-content: flex-start;">
+              <view class="section_3" bindtap="toggleAgreement" style="flex-shrink: 0; margin-right: 12px;">
+                <image wx:if="{{agreed}}" class="check-icon" src="img/checkbox-checked.png" />
+              </view>
+              <text class="font_5 text_11">我已阅读并同意</text>
+              <text class="font_4">《服务条款》</text>
+              <text class="font_5">和</text>
+              <text class="font_4">《隐私政策》</text>
+            </view>
+          </view>
+          <view class="flex-col justify-start items-center text-wrapper_4" bindtap="onRegister">
+            <text class="font text_13">立即注册</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

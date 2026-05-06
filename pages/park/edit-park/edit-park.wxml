@@ -1,0 +1,241 @@
+<view class="page">
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">编辑园区</text>
+      <view class="nav-right" bindtap="onSave">
+        <text class="nav-save">保存</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <view class="page-body">
+
+    <!-- 基础信息配置区 -->
+    <view class="section">
+      <text class="section-title">基础信息配置</text>
+      <view class="form-card">
+        <text class="form-label">园区名称</text>
+        <input class="form-input" placeholder="例如：04号生态实验园" value="{{parkName}}" bindinput="onNameInput" />
+      </view>
+      <view class="form-card" wx:if="{{parkAddress}}">
+        <text class="form-label">园区地址</text>
+        <text class="form-address">{{parkAddress}}</text>
+      </view>
+    </view>
+
+    <!-- 核心参数预警区 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">核心参数预警</text>
+        <view class="tag-smart">
+          <text>智能推荐</text>
+        </view>
+      </view>
+
+      <!-- 湿度预警卡片 -->
+      <view class="param-card">
+        <view class="param-top">
+          <view class="param-icon-wrap">
+            <image class="param-icon" src="/pages/register/img/water.png" style="width:32rpx;height:40rpx;" />
+          </view>
+          <view class="param-info">
+            <view class="param-name-row">
+              <text class="param-name">湿度预警</text>
+              <text class="param-unit">单位：百分比 (%)</text>
+            </view>
+          </view>
+          <view class="tag-best">
+            <text>最佳 60-70%</text>
+          </view>
+        </view>
+        <view class="param-tip">
+          <text class="tip-icon">ℹ️</text>
+          <text class="tip-text">系统建议值：警告阈值建议调 ±3%，危及阈值建议调 ±5%</text>
+        </view>
+        <view class="param-ctrl">
+          <view class="ctrl-item">
+            <text class="ctrl-label">警告阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onHumidityWarnMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{humidityWarn}}</text>
+              <view class="ctrl-btn" bindtap="onHumidityWarnPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+          <view class="ctrl-item">
+            <text class="ctrl-label">危及阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onHumidityCritMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{humidityCrit}}</text>
+              <view class="ctrl-btn" bindtap="onHumidityCritPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 温度预警卡片 -->
+      <view class="param-card">
+        <view class="param-top">
+          <view class="param-icon-wrap">
+            <image class="param-icon" src="img-health/temperture.png" style="width:34rpx;height:40rpx;" />
+          </view>
+          <view class="param-info">
+            <view class="param-name-row">
+              <text class="param-name">温度预警</text>
+              <text class="param-unit">单位：摄氏度 (℃)</text>
+            </view>
+          </view>
+          <view class="tag-best">
+            <text>最佳 26℃</text>
+          </view>
+        </view>
+        <view class="param-tip">
+          <text class="tip-icon">ℹ️</text>
+          <text class="tip-text">系统建议值：警告阈值建议调 ±10.0，危及阈值建议调 ±20.0</text>
+        </view>
+        <view class="param-ctrl">
+          <view class="ctrl-item">
+            <text class="ctrl-label">警告偏差</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onTempWarnMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{tempWarn}}</text>
+              <view class="ctrl-btn" bindtap="onTempWarnPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+          <view class="ctrl-item">
+            <text class="ctrl-label">危及偏差</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onTempCritMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{tempCrit}}</text>
+              <view class="ctrl-btn" bindtap="onTempCritPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 土壤养分卡片 -->
+      <view class="param-card">
+        <view class="param-top">
+          <view class="param-icon-wrap">
+            <image class="param-icon" src="/pages/register/img/fertilizer.png" style="width:34rpx;height:50rpx;" />
+          </view>
+          <view class="param-info">
+            <view class="param-name-row">
+              <text class="param-name">土壤养分</text>
+              <text class="param-unit">单位：百分比 (%)</text>
+            </view>
+          </view>
+          <view class="tag-best">
+            <text>最佳 60-70%</text>
+          </view>
+        </view>
+        <view class="param-tip">
+          <text class="tip-icon">ℹ️</text>
+          <text class="tip-text">系统建议值：警告阈值建议调 ±5%，危及阈值建议调 ±10%</text>
+        </view>
+        <view class="param-ctrl">
+          <view class="ctrl-item">
+            <text class="ctrl-label">警告阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onNutrientWarnMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{nutrientWarn}}</text>
+              <view class="ctrl-btn" bindtap="onNutrientWarnPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+          <view class="ctrl-item">
+            <text class="ctrl-label">危及阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onNutrientCritMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{nutrientCrit}}</text>
+              <view class="ctrl-btn" bindtap="onNutrientCritPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 光照强度卡片 -->
+      <view class="param-card">
+        <view class="param-top">
+          <view class="param-icon-wrap">
+            <image class="param-icon" src="/pages/register/img/sun.png" style="width:30rpx;height:40rpx;" />
+          </view>
+          <view class="param-info">
+            <view class="param-name-row">
+              <text class="param-name">光照强度</text>
+              <text class="param-unit">单位：千勒克斯 (klx)</text>
+            </view>
+          </view>
+          <view class="tag-best">
+            <text>目标 15.0</text>
+          </view>
+        </view>
+        <view class="param-tip">
+          <text class="tip-icon">ℹ️</text>
+          <text class="tip-text">系统建议值：警告阈值建议调 ±1.0，危及阈值建议调 ±3.0</text>
+        </view>
+        <view class="param-ctrl">
+          <view class="ctrl-item">
+            <text class="ctrl-label">警告阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onLightWarnMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{lightWarn}}</text>
+              <view class="ctrl-btn" bindtap="onLightWarnPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+          <view class="ctrl-item">
+            <text class="ctrl-label">危及阈值</text>
+            <view class="ctrl-btns">
+              <view class="ctrl-btn" bindtap="onLightCritMinus">
+                <text>−</text>
+              </view>
+              <text class="ctrl-val">{{lightCrit}}</text>
+              <view class="ctrl-btn" bindtap="onLightCritPlus">
+                <text>+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部保存按钮 -->
+  <view class="bottom-save-bar" style="padding-bottom:{{saveBottom}}rpx;">
+    <view class="save-btn" bindtap="onSave">
+      <text class="save-btn-text">完成修改并保存</text>
+    </view>
+  </view>
+</view>

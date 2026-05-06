@@ -1,0 +1,58 @@
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-back" bindtap="goBack">
+      <image class="back-icon" src="/images/back-arrow.png" mode="aspectFit"></image>
+    </view>
+    <text class="navbar-title">修改手机号</text>
+  </view>
+
+  <!-- 顶部图标与标题区 -->
+  <view class="top-section">
+    <view class="top-icon">
+      <image class="top-icon-img" src="/images/malou-bg.png" mode="aspectFill"></image>
+    </view>
+    <text class="top-title">更换手机号码</text>
+    <text class="top-subtitle">验证后即可绑定新的手机号码</text>
+  </view>
+
+  <!-- 表单卡片 -->
+  <view class="form-card">
+    <!-- 新手机号码 -->
+    <view class="form-group">
+      <text class="form-label">新手机号码</text>
+      <view class="input-wrapper">
+        <image class="input-icon" src="/images/phone-icon.png" mode="aspectFit"></image>
+        <input type="tel" class="input-field" placeholder="请输入新手机号" maxlength="11" bindinput="onPhoneInput" value="{{phone}}" />
+      </view>
+    </view>
+
+    <!-- 短信验证码 -->
+    <view class="form-group">
+      <text class="form-label">短信验证码</text>
+      <view class="code-wrapper">
+        <view class="input-wrapper code-input">
+          <image class="input-icon" src="/images/shield-icon.png" mode="aspectFit"></image>
+          <input type="text" class="input-field" placeholder="请输入验证码" maxlength="6" bindinput="onCodeInput" value="{{code}}" />
+        </view>
+        <button class="send-code-btn" bindtap="sendCode" disabled="{{countdown > 0}}">
+          {{countdown > 0 ? countdown + '秒后重发' : '获取验证码'}}
+        </button>
+      </view>
+    </view>
+
+    <!-- 确认修改按钮 -->
+    <button class="btn-reset" bindtap="doSubmit">确认修改</button>
+  </view>
+
+  <!-- 安全提示栏 -->
+  <view class="security-notice">
+    <view class="notice-icon">!</view>
+    <text class="notice-text">为保障账户安全，修改手机号后需重新登录。</text>
+  </view>
+
+  <!-- 消息提示 -->
+  <view class="message-toast {{messageType}}" wx:if="{{message}}">
+    <text>{{message}}</text>
+  </view>
+</view>

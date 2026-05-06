@@ -1,0 +1,45 @@
+<view class="flex-col page">
+  <view class="flex-row items-center section" style="padding-top: {{statusBarHeight + 14}}px;">
+    <image class="image" src="img/Left arrow.png" bindtap="goBack" />
+    <text class="ml-16 font">微信登录授权</text>
+  </view>
+
+  <view class="flex-row justify-center items-center group">
+    <view class="flex-col justify-start items-center image-wrapper">
+      <image class="image_3" src="img/Vector-1.png" />
+    </view>
+    <view class="connector-container">
+  <view class="connector-line"></view>
+  <view class="connector-dot">
+    <image class="connector-img" src="img/connect.png" mode="aspectFit" />
+  </view>
+</view>
+    <image class="image_2" src="img/Vector.png" />
+  </view>
+
+  <view class="flex-col items-center group_2">
+    <text class="text">码喽科技</text>
+    <text class="mt-16 font_2 text_2">请进行微信授权登录</text>
+  </view>
+
+  <view class="flex-col section_2">
+    <text class="self-start text_3">申请使用您的：</text>
+    <view class="flex-col self-stretch mt-27">
+      <view class="flex-row items-center self-stretch" bindtap="toggleAgree">
+        <view wx:if="{{!agreed}}" class="section_3"></view>
+        <image wx:if="{{agreed}}" class="check-icon" src="img/checkbox-checked.png" />
+        <text class="font text_4 ml-17">获取您的公开信息</text>
+      </view>
+      <text class="self-start font_2 text_5 mt-7">微信昵称和头像</text>
+    </view>
+  </view>
+
+  <view class="flex-col group_3">
+    <view class="flex-col justify-start items-center relative text-wrapper" bindtap="confirmLogin">
+      <text class="font text_6">同意授权登录</text>
+    </view>
+    <view class="flex-col justify-start items-center text-wrapper_2 mt-15" bindtap="refuseLogin">
+      <text class="font text_7">拒绝</text>
+    </view>
+  </view>
+</view>

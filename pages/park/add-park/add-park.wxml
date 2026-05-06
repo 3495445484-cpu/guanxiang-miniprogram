@@ -1,0 +1,37 @@
+<view class="page">
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">新增园区</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <view class="page-body">
+    <view class="form-card">
+      <view class="form-item">
+        <text class="form-label">园区名称</text>
+        <input class="form-input" placeholder="请输入园区名称" value="{{parkName}}" bindinput="onNameInput" />
+      </view>
+    </view>
+    <view class="form-card">
+      <view class="form-item">
+        <text class="form-label">园区地址</text>
+        <input class="form-input" value="{{parkAddress}}" bindinput="onAddressInput" placeholder="自动获取当前位置（首次需授权）" />
+      </view>
+    </view>
+    <view class="form-card">
+      <view class="form-item">
+        <text class="form-label">园区简介</text>
+        <textarea class="form-textarea" placeholder="请输入园区简介" value="{{parkDesc}}" bindinput="onDescInput"></textarea>
+      </view>
+    </view>
+    <view class="save-btn" bindtap="onSave">
+      <text class="save-btn-text">确认添加</text>
+    </view>
+  </view>
+</view>

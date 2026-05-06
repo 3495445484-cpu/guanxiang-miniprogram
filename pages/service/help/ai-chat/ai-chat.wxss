@@ -1,0 +1,465 @@
+/* ===================== 全局 ===================== */
+.page {
+  min-height: 100vh;
+  background: #F8FAF9;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.nav-back {
+  font-size: 44rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+.nav-title-left {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #00A896;
+}
+
+/* ===================== 聊天区域 ===================== */
+.chat-body {
+  flex: 1;
+  position: fixed;
+  top: 192rpx;
+  left: 0;
+  right: 0;
+  bottom: 352rpx;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+}
+
+/* ===================== AI 欢迎区 ===================== */
+.ai-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 32rpx;
+}
+.ai-avatar-wrap {
+  width: 120rpx;
+  height: 120rpx;
+  background: #00A896;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 168, 150, 0.3);
+}
+.ai-avatar {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24rpx;
+}
+.ai-avatar-icon {
+  font-size: 60rpx;
+}
+.ai-welcome-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 12rpx;
+}
+.ai-welcome-desc {
+  font-size: 28rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 1.6;
+  padding: 0 40rpx;
+}
+
+/* ===================== 日期分隔 ===================== */
+.date-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 0;
+}
+.date-text {
+  font-size: 24rpx;
+  color: #BBBBBB;
+}
+
+/* ===================== 气泡 ===================== */
+.bubble-row {
+  display: flex;
+  margin-bottom: 24rpx;
+  align-items: flex-start;
+}
+.user-row {
+  justify-content: flex-end;
+}
+.ai-row {
+  justify-content: flex-start;
+}
+.bubble-avatar-small {
+  width: 80rpx;
+  height: 80rpx;
+  background: #0033FF;
+  border-radius: 50%;
+  outline: 6px solid #FF00FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 16rpx;
+}
+.bubble-avatar-icon {
+  font-size: 32rpx;
+}
+.bubble-main {
+  max-width: 520rpx;
+  display: flex;
+  flex-direction: column;
+}
+.user-main {
+  align-items: flex-end;
+}
+.bubble {
+  padding: 20rpx 28rpx;
+  border-radius: 24rpx;
+  line-height: 1.7;
+}
+.user-bubble {
+  background: #00A896;
+  border-bottom-right-radius: 8rpx;
+}
+.ai-bubble {
+  background: #FFFFFF;
+  border-bottom-left-radius: 8rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+.bubble-text {
+  font-size: 32rpx;
+  color: #1A1A1A;
+  line-height: 1.7;
+}
+.user-bubble .bubble-text {
+  color: #FFFFFF;
+}
+.bubble-time {
+  font-size: 22rpx;
+  color: #CCCCCC;
+  margin-top: 8rpx;
+}
+.ai-time {
+  align-self: flex-start;
+  margin-left: 80rpx;
+}
+.loading-bubble {
+  padding: 24rpx 32rpx;
+}
+.loading-dots {
+  color: #00A896;
+  font-size: 28rpx;
+}
+
+/* ===================== 快捷提问 ===================== */
+.quick-section {
+  position: fixed;
+  bottom: 200rpx;
+  left: 0;
+  right: 0;
+  padding: 0 32rpx;
+  background: #F8FAF9;
+}
+.quick-header {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-bottom: 16rpx;
+}
+.quick-label {
+  font-size: 28rpx;
+}
+.quick-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+.quick-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.quick-btn {
+  padding: 12rpx 24rpx;
+  border: 2rpx solid #DDDDDD;
+  border-radius: 40rpx;
+  background: #FFFFFF;
+}
+.quick-btn-text {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+/* ===================== 底部输入框 ===================== */
+.input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  padding: 16rpx 32rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.06);
+  z-index: 100;
+}
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background: #F5F6F8;
+  border-radius: 48rpx;
+  padding: 16rpx 20rpx;
+  gap: 12rpx;
+}
+.input-keyboard {
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+.input-field {
+  flex: 1;
+  font-size: 32rpx;
+  color: #1A1A1A;
+}
+.input-placeholder {
+  color: #BBBBBB;
+  font-size: 32rpx;
+}
+.input-mic {
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+.send-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background: #00A896;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.send-icon {
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+/* ===================== 语音按钮 ===================== */
+.voice-btn {
+  flex-shrink: 0;
+  padding: 8rpx 12rpx;
+}
+.voice-btn-icon {
+  font-size: 36rpx;
+}
+
+/* ===================== 录音提示 ===================== */
+.voice-hint {
+  text-align: center;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+  color: #999;
+}
+.voice-hint-text {
+  color: #666;
+}
+.voice-hint-text.cancel {
+  color: #ff5252;
+}
+
+/* ===================== 录音中状态 ===================== */
+.recording-wrap {
+  justify-content: center;
+  background: #F5F6F8;
+}
+.recording-inner {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 48rpx;
+  background: #fff;
+  border: 2rpx solid #e0e0e0;
+}
+.recording-dot {
+  font-size: 32rpx;
+  color: #ff5252;
+  animation: blink 1s infinite;
+}
+.recording-text {
+  font-size: 30rpx;
+  color: #666;
+}
+.recording-time {
+  font-size: 30rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===================== 录音中状态条 ===================== */
+.recording-bar {
+  justify-content: center;
+  background: #F5F6F8;
+}
+.recording-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 24rpx 60rpx;
+}
+.recording-ring-inner {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: #00A896;
+  border-radius: 48rpx;
+  padding: 20rpx 48rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,168,150,0.3);
+}
+.recording-ring-icon {
+  font-size: 40rpx;
+}
+.recording-ring-time {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+}
+.recording-tip {
+  font-size: 26rpx;
+  color: #aaa;
+}
+.recording-tip.cancel {
+  color: #ff5252;
+}
+
+/* ===================== 录音覆盖层 ===================== */
+.recording-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  background: rgba(245,246,248,0.95);
+  border-radius: 0;
+  z-index: 10;
+}
+.recording-ring {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: #00A896;
+  border-radius: 48rpx;
+  padding: 20rpx 56rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,168,150,0.35);
+}
+.recording-ring-icon {
+  font-size: 40rpx;
+}
+.recording-ring-time {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+}
+.recording-tip {
+  font-size: 26rpx;
+  color: #aaa;
+}
+.recording-tip.cancel {
+  color: #ff5252;
+}
+
+/* ===================== 录音中模式 ===================== */
+.recording-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  padding: 16rpx 32rpx;
+  background: #F5F6F8;
+  border-radius: 0;
+}
+.recording-left {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+.recording-dot {
+  font-size: 32rpx;
+  color: #ff5252;
+  animation: blink 1s infinite;
+}
+.recording-time {
+  font-size: 34rpx;
+  color: #1A1A1A;
+  font-weight: bold;
+}
+.cancel-btn {
+  padding: 12rpx 32rpx;
+  border-radius: 40rpx;
+  background: #e0e0e0;
+}
+.cancel-btn-text {
+  font-size: 30rpx;
+  color: #666;
+}
+.voice-send-btn {
+  width: 72rpx;
+  height: 72rpx;
+  background: #00A896;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.voice-send-icon {
+  font-size: 32rpx;
+  color: #fff;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.recording-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding-left: 8rpx;
+}

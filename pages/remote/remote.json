@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "远程控制",
+  "navigationBarBackgroundColor": "#F0F8F5",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "add-park-modal": "/components/add-park-modal/add-park-modal"
+  }
+}

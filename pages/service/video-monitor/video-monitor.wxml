@@ -1,0 +1,178 @@
+<view class="page" style="padding-top:{{statusBarHeight}}px">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <text class="back-icon" bindtap="goBack">←</text>
+    <text class="nav-title">实时视频</text>
+  </view>
+
+  <!-- 园区选择栏 -->
+  <view class="park-selector">
+    <text class="park-name">{{gardenName}}</text>
+    <text class="park-arrow">▼</text>
+  </view>
+
+  <!-- 视频播放器 -->
+  <view class="video-container">
+    <video
+      class="video-player"
+      src="{{videoUrl}}"
+      autoplay
+      muted
+      controls
+      show-center-play-btn
+      enable-progress-gesture
+      show-fullscreen-btn
+      binderror="onVideoError"
+    />
+    <!-- LIVE标签 -->
+    <view class="live-tag">
+      <text class="live-dot"></text>
+      <text class="live-text">LIVE</text>
+    </view>
+    <!-- 摄像头信息 -->
+    <view class="cam-info">
+      <text class="cam-name">{{cameraName}}</text>
+    </view>
+    <!-- REC时间 -->
+    <view class="rec-time">
+      <text class="rec-dot"></text>
+      <text class="rec-text">REC {{recTime}}</text>
+    </view>
+    <!-- 暂停按钮 -->
+    <view class="pause-btn" bindtap="togglePlay">
+      <text class="pause-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+    </view>
+    <!-- 底部控制栏 -->
+    <view class="video-controls">
+      <view class="ctrl-btn" bindtap="onSnapshot">
+        <text>📷</text>
+      </view>
+      <view class="ctrl-btn" bindtap="onRecord">
+        <text>🎬</text>
+      </view>
+      <view class="ctrl-volume">
+        <text class="vol-icon">🔊</text>
+        <view class="vol-bar">
+          <view class="vol-progress" style="width:{{volume}}%"></view>
+        </view>
+      </view>
+      <view class="ctrl-btn hd-btn">高清</view>
+      <view class="ctrl-btn" bindtap="onFullscreen">
+        <text>⛶</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 远程决策控制模块 -->
+  <view class="control-section">
+    <text class="section-title">远程决策控制</text>
+
+    <!-- 卡片1：智能灌溉 -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-bg">
+          <text>💧</text>
+        </view>
+        <text class="card-title">智能灌溉系统</text>
+        <view class="status-tag on">ON - 自动</view>
+      </view>
+      <view class="card-meta">
+        <text class="meta-text">最后灌溉：14:30</text>
+      </view>
+      <view class="card-data-row">
+        <view class="data-item">
+          <text class="data-label">当前土壤湿度</text>
+          <text class="data-value green">42%</text>
+        </view>
+        <view class="data-item right">
+          <text class="data-label">流量(L/MIN)</text>
+          <text class="data-value">65</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width:42%"></view>
+      </view>
+    </view>
+
+    <!-- 卡片2：肥料补充 -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-bg">
+          <text>🧪</text>
+        </view>
+        <text class="card-title">肥料补充</text>
+        <view class="status-tag on">ON - 自动</view>
+      </view>
+      <view class="card-meta">
+        <text class="meta-text">最后补充：16:20</text>
+      </view>
+      <view class="card-data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <text class="data-value yellow">1.2mS/cm | 6.2pH</text>
+        </view>
+        <view class="data-item right">
+          <text class="data-label">补给量</text>
+          <text class="data-value">30%</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill yellow" style="width:30%"></view>
+      </view>
+    </view>
+
+    <!-- 卡片3：智能通风 -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-bg">
+          <text>🌬</text>
+        </view>
+        <text class="card-title">智能通风</text>
+        <view class="status-tag on">ON - 自动</view>
+      </view>
+      <view class="card-meta">
+        <text class="meta-text">最后通风：13:45</text>
+      </view>
+      <view class="card-data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <text class="data-value red">1.2mS/cm | 6.2pH</text>
+        </view>
+        <view class="data-item right">
+          <text class="data-label">风机转速</text>
+          <text class="data-value">40%</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width:40%"></view>
+      </view>
+    </view>
+
+    <!-- 卡片4：光照控制 -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-bg">
+          <text>☀️</text>
+        </view>
+        <text class="card-title">光照控制系统</text>
+        <view class="status-tag on">ON - 自动</view>
+      </view>
+      <view class="card-meta">
+        <text class="meta-text">最后调控：12:00</text>
+      </view>
+      <view class="card-data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <text class="data-value green">环境稳定</text>
+        </view>
+        <view class="data-item right">
+          <text class="data-label">亮度值(LUX)</text>
+          <text class="data-value">850</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width:85%"></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,310 @@
+/* ===================== 遮罩层 ===================== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================== 弹窗主体 ===================== */
+.modal-card {
+  width: 92%;
+  max-height: 88vh;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===================== 标题区 ===================== */
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 40rpx 32rpx 24rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+.modal-title-area {
+  flex: 1;
+}
+.modal-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 8rpx;
+}
+.modal-sub {
+  display: block;
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* ===================== 内容区 ===================== */
+.section {
+  padding: 24rpx 32rpx;
+}
+.modal-close {
+  width: 56rpx;
+  height: 56rpx;
+  background: #F5F6F8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}
+.close-icon {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 1;
+}
+
+
+
+/* ===================== 字段 ===================== */
+.field {
+  margin-bottom: 24rpx;
+}
+.field-label {
+  display: block;
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 12rpx;
+}
+.field-input {
+  width: 100%;
+  height: 96rpx;
+  background: #F5F6F8;
+  border-radius: 32rpx;
+  padding: 0 28rpx;
+  font-size: 30rpx;
+  color: #1A1A1A;
+  box-sizing: border-box;
+}
+
+/* ===================== 位置按钮 ===================== */
+.location-btn {
+  width: 100%;
+  height: 112rpx;
+  background: #00A896;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 168, 150, 0.3);
+}
+.location-icon {
+  font-size: 36rpx;
+}
+.location-btn-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.location-result {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-top: 12rpx;
+  padding-left: 4rpx;
+}
+.location-icon-small {
+  font-size: 24rpx;
+}
+.location-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* ===================== 模块标题栏 ===================== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+.section-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+.tag-smart {
+  background: #00A896;
+  border-radius: 20rpx;
+  padding: 6rpx 16rpx;
+}
+.tag-smart-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* ===================== 参数卡片 ===================== */
+.param-card {
+  background: #F5F6F8;
+  border-radius: 32rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+.param-top {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+.param-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  background: #E8F7F5;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.param-icon {
+  font-size: 36rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.param-info {
+  flex: 1;
+}
+.param-name-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+.param-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+.param-unit {
+  font-size: 24rpx;
+  color: #999999;
+}
+.tag-best {
+  background: #00A896;
+  border-radius: 20rpx;
+  padding: 8rpx 16rpx;
+  flex-shrink: 0;
+}
+.tag-best text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* ===================== 提示栏 ===================== */
+.param-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10rpx;
+  background: #E8F7F5;
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 24rpx;
+}
+.tip-icon {
+  font-size: 24rpx;
+  flex-shrink: 0;
+  margin-top: 2rpx;
+}
+.tip-text {
+  font-size: 24rpx;
+  color: #00A896;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ===================== 阈值调节区 ===================== */
+.param-ctrl {
+  display: flex;
+  gap: 16rpx;
+}
+.ctrl-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.ctrl-label {
+  font-size: 28rpx;
+  color: #666666;
+}
+.ctrl-btns {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 12rpx 16rpx;
+}
+.ctrl-btn {
+  width: 52rpx;
+  height: 52rpx;
+  background: #F5F6F8;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ctrl-btn text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1A1A1A;
+  line-height: 1;
+}
+.ctrl-val {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+/* ===================== 操作按钮区 ===================== */
+.action-btns {
+  display: flex;
+  gap: 24rpx;
+  padding: 24rpx 32rpx 32rpx;
+}
+.btn-cancel {
+  flex: 1;
+  height: 96rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #00A896;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-cancel text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #00A896;
+}
+.btn-confirm {
+  flex: 1;
+  height: 96rpx;
+  background: #00A896;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 168, 150, 0.3);
+}
+.btn-confirm text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}

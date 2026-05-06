@@ -1,0 +1,62 @@
+/* ===================== 全局 ===================== */
+.page {
+  min-height: 100vh;
+  background: #F5F6F8;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex; align-items: center;
+  height: 88rpx; padding: 0 32rpx;
+}
+.nav-left { width: 48rpx; display: flex; align-items: center; }
+.nav-back { font-size: 44rpx; color: #00A896; font-weight: bold; }
+.nav-title {
+  font-size: 36rpx; font-weight: 700; color: #00A896;
+  padding-left: 60rpx; flex: 1;
+}
+.nav-right { width: 48rpx; }
+
+/* ===================== 页面主体 ===================== */
+.page-body {
+  padding: 200rpx 32rpx 32rpx;
+  box-sizing: border-box;
+}
+
+/* ===================== 表单卡片 ===================== */
+.form-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06);
+}
+.form-item { margin-bottom: 28rpx; }
+.form-label { font-size: 28rpx; color: #666666; display: block; margin-bottom: 12rpx; }
+.form-input {
+  width: 100%; height: 88rpx; background: #F5F6F8;
+  border-radius: 16rpx; padding: 0 24rpx;
+  font-size: 30rpx; box-sizing: border-box;
+}
+.form-textarea {
+  width: 100%; height: 200rpx; background: #F5F6F8;
+  border-radius: 16rpx; padding: 24rpx;
+  font-size: 30rpx; box-sizing: border-box;
+}
+
+/* ===================== 保存按钮 ===================== */
+.save-btn {
+  background: #00A896;
+  border-radius: 32rpx;
+  padding: 28rpx;
+  text-align: center;
+  margin-top: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 168, 150, 0.3);
+}
+.save-btn-text { font-size: 32rpx; font-weight: 700; color: #FFFFFF; }

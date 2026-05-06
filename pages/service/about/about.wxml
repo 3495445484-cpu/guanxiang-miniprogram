@@ -1,0 +1,104 @@
+<view class="page">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">关于我们</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <view class="page-body">
+
+    <!-- Banner 卡片 -->
+    <view class="banner">
+      <image class="banner-bg" src="/pages/service/about/about/images/banner-bg.jpg" mode="aspectFill"></image>
+      <view class="banner-overlay"></view>
+      <view class="banner-content">
+        <image class="banner-icon-img" src="/images/malou-bg.png" mode="aspectFit"></image>
+        <text class="banner-title">码喽科技</text>
+        <text class="banner-sub">打造自动化，开放莞香影响力！</text>
+      </view>
+    </view>
+
+    <!-- 工作室简介模块 -->
+    <view class="module-card">
+      <view class="module-title-row">
+        <view class="title-line"></view>
+        <text class="module-title">工作室简介</text>
+      </view>
+      <text class="module-desc">码喽科技是一家系统开发工作室，主要以物联系统开发及智慧种植管理塑造为主。</text>
+
+      <!-- 专业技术卡片 -->
+      <view class="tech-card">
+        <view class="tech-icon-wrap">
+          <text class="tech-icon">⚙️</text>
+        </view>
+        <view class="tech-info">
+          <text class="tech-name">专业技术</text>
+          <text class="tech-desc">深耕物联网架构，提供端到端的系统集成解决方案。</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 企业使命模块 -->
+    <view class="module-card">
+      <view class="module-title-row">
+        <view class="title-line"></view>
+        <text class="module-title">企业使命</text>
+      </view>
+      <text class="mission-text">"通过科学技术使莞香高质高产，让种植户<text class="highlight">增收致富</text>，让莞香文化品牌走向世界！"</text>
+
+      <!-- 使命条目 -->
+      <view class="mission-list">
+        <view class="mission-item">
+          <view class="mission-check">
+            <text class="mission-check-icon">✓</text>
+          </view>
+          <text class="mission-item-text">助力高质高产</text>
+        </view>
+        <view class="mission-item">
+          <view class="mission-check">
+            <text class="mission-check-icon">✓</text>
+          </view>
+          <text class="mission-item-text">带动农户增收</text>
+        </view>
+        <view class="mission-item">
+          <view class="mission-check">
+            <text class="mission-check-icon">✓</text>
+          </view>
+          <text class="mission-item-text">弘扬莞香文化</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 社区介绍模块 -->
+    <view class="module-card community-section" style="margin-top: 5px;">
+      <view class="module-title-row">
+        <view class="title-line"></view>
+        <text class="module-title">社区介绍</text>
+      </view>
+      <text class="module-desc">我们构建了一个专属的协作空间，汇聚农户与农业专家，共同分享种植经验、探讨前沿技术，解决生产难题。</text>
+      <view class="qr-card">
+        <text class="qr-title">加入社区交流群</text>
+        <text class="qr-subtitle">长按识别下方二维码，开启社区交流</text>
+        <view class="qr-wrap">
+          <image class="qr-img" src="/images/community-qr.png" mode="aspectFit"></image>
+          <view class="qr-icon-overlay">
+            <text class="qr-icon">🌿</text>
+          </view>
+        </view>
+        <text class="qr-caption">AGRICOMMUNITY APP</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部版权 -->
+  <view class="copyright">
+    <text class="copyright-text">© 2024 莞香智能管理平台。保留所有权利。</text>
+  </view>
+</view>

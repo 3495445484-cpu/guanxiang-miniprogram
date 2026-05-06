@@ -1,0 +1,366 @@
+/* ===================== 页面基础 ===================== */
+.page {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+/* ===================== 顶部导航栏 ===================== */
+.nav-bar {
+  width: 100%;
+  background: #F5F5F5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 32rpx;
+  min-height: 96rpx;
+}
+
+.nav-back {
+  width: 60rpx;
+  display: flex;
+  align-items: center;
+}
+
+.back-icon {
+  font-size: 44rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+
+.nav-center {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.nav-right {
+  width: 60rpx;
+}
+
+/* ===================== 页面主体 ===================== */
+.page-body {
+  width: 100%;
+}
+
+/* ===================== 园区选择栏 ===================== */
+.park-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  margin: 0 auto 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.park-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.park-arrow {
+  font-size: 24rpx;
+  color: #757575;
+}
+
+/* ===================== 视频播放器卡片 ===================== */
+.video-card {
+  width: 92%;
+  background: #000000;
+  border-radius: 20rpx;
+  margin: 0 auto 20rpx;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.12);
+}
+
+.video-player {
+  width: 100%;
+  height: 440rpx;
+  display: block;
+}
+
+/* ===================== 视频封面层 ===================== */
+.video-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 440rpx;
+  background: #000000;
+  z-index: 10;
+}
+
+.cover-top-bar {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  right: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  z-index: 11;
+}
+
+/* LIVE 标签 */
+.live-tag {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  background: #F44336;
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.live-dot {
+  width: 10rpx;
+  height: 10rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+}
+
+.live-text {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.camera-name-text {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.rec-time-text {
+  font-size: 20rpx;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* 中央播放按钮 */
+.center-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(0, 169, 150, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+}
+
+.play-icon-text {
+  font-size: 40rpx;
+  color: #FFFFFF;
+  margin-left: 6rpx;
+}
+
+/* ===================== 底部控制栏 ===================== */
+.video-controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80rpx;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+  gap: 20rpx;
+  z-index: 20;
+}
+
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx;
+}
+
+.ctrl-icon {
+  font-size: 32rpx;
+  color: #FFFFFF;
+}
+
+.ctrl-volume {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.volume-slider {
+  flex: 1;
+}
+
+.hd-btn {
+  font-size: 20rpx;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+/* ===================== 远程决策控制标题 ===================== */
+.section-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #333333;
+  padding: 24rpx 32rpx 16rpx;
+}
+
+/* ===================== 设备卡片通用 ===================== */
+.device-card {
+  width: 92%;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 0 auto 24rpx;
+  padding: 28rpx 24rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.card-icon-wrap {
+  width: 64rpx;
+  height: 64rpx;
+  background: #E8F7F5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.card-icon {
+  font-size: 32rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+  flex: 1;
+}
+
+/* ON 状态标签 */
+.status-tag {
+  display: flex;
+  align-items: center;
+  padding: 6rpx 14rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.status-tag.on {
+  background: #E8F7F5;
+  color: #00A896;
+}
+
+.status-tag.off {
+  background: #F0F0F0;
+  color: #999999;
+}
+
+.tag-sep {
+  margin: 0 4rpx;
+  opacity: 0.7;
+}
+
+/* ===================== 数据行 ===================== */
+.data-row {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.data-item {
+  flex: 1;
+}
+
+.data-label {
+  display: block;
+  font-size: 22rpx;
+  color: #999999;
+  margin-bottom: 6rpx;
+}
+
+.data-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6rpx;
+  flex-wrap: wrap;
+}
+
+.data-big {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.1;
+}
+
+.data-big.green {
+  color: #00A896;
+}
+
+.data-big.yellow {
+  color: #FF9900;
+  font-size: 28rpx;
+}
+
+.data-big.red {
+  color: #FF3B30;
+  font-size: 28rpx;
+}
+
+.data-unit {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* ===================== 进度条 ===================== */
+.slider-row {
+  padding: 0 4rpx;
+}
+
+.device-slider {
+  width: 100%;
+  margin: 0;
+}

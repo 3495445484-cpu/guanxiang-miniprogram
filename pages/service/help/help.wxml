@@ -1,0 +1,83 @@
+<view class="page">
+  <!-- 导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">帮助与支持</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="page-body">
+
+    <!-- 服务 Banner -->
+    <view class="banner-card">
+      <text class="banner-title">码喽莞香团队</text>
+      <text class="banner-sub">推动莞香文化走向全中国</text>
+      <text class="banner-time">官方服务时间：周一至周日 09:00 - 21:00</text>
+      <text class="banner-icon">🎧</text>
+    </view>
+
+    <!-- 常见问题 -->
+    <view class="faq-section">
+      <view class="faq-header">
+        <text class="faq-header-title">常见问题</text>
+        <text class="faq-more" bindtap="onViewMore">查看更多</text>
+      </view>
+
+      <view class="faq-card">
+        <view class="faq-item" bindtap="onFaqTap" data-index="0">
+          <view class="faq-icon-wrap"><image class="faq-icon" src="help/images/change.png" style="width:34rpx;height:34rpx;" /></view>
+          <view class="faq-info">
+            <text class="faq-title">如何快速切换管理园区？</text>
+            <text class="faq-desc">多园区高效管理指南</text>
+          </view>
+          <text class="faq-arrow">›</text>
+        </view>
+        <view class="faq-divider"></view>
+        <view class="faq-item" bindtap="onFaqTap" data-index="1">
+          <view class="faq-icon-wrap"><image class="faq-icon" src="help/images/attention.png" style="width:34rpx;height:34rpx;" /></view>
+          <view class="faq-info">
+            <text class="faq-title">传感器数据异常怎么办？</text>
+            <text class="faq-desc">常见故障排查步骤</text>
+          </view>
+          <text class="faq-arrow">›</text>
+        </view>
+        <view class="faq-divider"></view>
+        <view class="faq-item" bindtap="onFaqTap" data-index="2">
+          <view class="faq-icon-wrap"><image class="faq-icon" src="help/images/wheel.png" style="width:34rpx;height:34rpx;" /></view>
+          <view class="faq-info">
+            <text class="faq-title">如何修改环境阈值预警？</text>
+            <text class="faq-desc">自定义种植环境安全范围</text>
+          </view>
+          <text class="faq-arrow">›</text>
+        </view>
+        <view class="faq-divider"></view>
+        <view class="faq-item" bindtap="onFaqTap" data-index="3">
+          <view class="faq-icon-wrap"><image class="faq-icon" src="help/images/return-lock.png" style="width:34rpx;height:34rpx;" /></view>
+          <view class="faq-info">
+            <text class="faq-title">忘记密码如何重置？</text>
+            <text class="faq-desc">账号安全与自助找回</text>
+          </view>
+          <text class="faq-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部固定按钮 -->
+  <view class="footer-btns">
+    <view class="footer-btn online" bindtap="onOnlineService">
+      <image class="footer-btn-icon" src="help/images/message1.png" style="width:40rpx;height:40rpx;" />
+      <text class="footer-btn-text">在线咨询</text>
+    </view>
+    <view class="footer-btn phone" bindtap="onPhoneCall">
+      <image class="footer-btn-icon" src="help/images/phone.png" style="width:40rpx;height:40rpx;" />
+      <text class="footer-btn-text">电话热线</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+<view class="page" style="{{pageStyle}}">
+  <!-- ===================== 顶部导航栏 ===================== -->
+  <view class="top-nav" style="{{navStyle}}">
+    <view class="nav-content" style="padding-top: {{statusBarHeight}}px;">
+      <view class="nav-left" bindtap="goBack">
+        <text class="back-icon" style="{{iconStyle}}">←</text>
+      </view>
+      <text class="nav-title" style="{{titleStyle}}">设置</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- ===================== 页面内容 ===================== -->
+  <view class="page-content" style="{{contentStyle}}">
+    <!-- 模块1：通用设置 -->
+    <view class="module-title" style="{{moduleTitleStyle}}">通用设置</view>
+
+    <!-- 自动更新 -->
+    <view class="setting-card" style="{{cardStyle}}">
+      <view class="setting-item">
+        <view class="item-left">
+          <view class="item-icon-wrap" style="{{iconBgStyle}}">
+            <text class="item-icon" style="{{iconStyle}}">🔄</text>
+          </view>
+          <view class="item-text">
+            <text class="item-title" style="{{itemTitleStyle}}">自动更新</text>
+            <text class="item-desc" style="{{itemDescStyle}}">版本信息 v4.2.8</text>
+          </view>
+        </view>
+        <switch class="setting-switch" checked="{{settings.autoUpdate}}" color="#00BFA5" bindchange="onSwitchChange" data-key="autoUpdate" />
+      </view>
+    </view>
+
+    <!-- 消息通知 -->
+    <view class="setting-card" style="{{cardStyle}}">
+      <view class="setting-item">
+        <view class="item-left">
+          <view class="item-icon-wrap" style="{{iconBgStyle}}">
+            <text class="item-icon" style="{{iconStyle}}">🔔</text>
+          </view>
+          <view class="item-text">
+            <text class="item-title" style="{{itemTitleStyle}}">消息通知</text>
+            <text class="item-desc" style="{{itemDescStyle}}">重要种植预警与设备告警</text>
+          </view>
+        </view>
+        <switch class="setting-switch" checked="{{settings.notify}}" color="#00BFA5" bindchange="onSwitchChange" data-key="notify" />
+      </view>
+    </view>
+
+    <!-- 模块2：显示与偏好 -->
+    <view class="module-title" style="{{moduleTitleStyle}}">显示与偏好</view>
+
+    <!-- 深色模式 -->
+    <view class="setting-card" style="{{cardStyle}}">
+      <view class="setting-item">
+        <view class="item-left">
+          <view class="item-icon-wrap" style="{{iconBgStyle}}">
+            <text class="item-icon" style="{{iconStyle}}">🌙</text>
+          </view>
+          <view class="item-text">
+            <text class="item-title" style="{{itemTitleStyle}}">深色模式</text>
+            <text class="item-desc" style="{{itemDescStyle}}">减少夜间使用的视觉疲劳</text>
+          </view>
+        </view>
+        <switch class="setting-switch" checked="{{settings.darkMode}}" color="#00BFA5" bindchange="toggleDarkMode" />
+      </view>
+    </view>
+
+    <!-- 字体大小 -->
+    <view class="setting-card" style="{{cardStyle}}">
+      <view class="setting-item">
+        <view class="item-left">
+          <view class="item-icon-wrap" style="{{iconBgStyle}}">
+            <text class="item-icon" style="{{iconStyle}}">T</text>
+          </view>
+          <view class="item-text">
+            <text class="item-title" style="{{itemTitleStyle}}">字体大小</text>
+            <view class="font-slider-wrap">
+              <slider class="font-slider" value="{{fontSizeValue}}" min="0" max="3" activeColor="#00BFA5" backgroundColor="#E0E0E0" blockColor="#00BFA5" blockSize="20" bindchange="onFontSizeChange" />
+              <view class="font-labels">
+                <text class="font-label {{settings.fontSize == '标准' ? 'active' : ''}}" style="{{fontLabelStyle}}" bindtap="setFontSize" data-size="标准">标准</text>
+                <text class="font-label {{settings.fontSize == '较大' ? 'active' : ''}}" style="{{fontLabelStyle}}" bindtap="setFontSize" data-size="较大">较大</text>
+                <text class="font-label {{settings.fontSize == '农忙大字' ? 'active' : ''}}" style="{{fontLabelStyle}}" bindtap="setFontSize" data-size="农忙大字">农忙大字</text>
+                <text class="font-label {{settings.fontSize == '超大' ? 'active' : ''}}" style="{{fontLabelStyle}}" bindtap="setFontSize" data-size="超大">超大</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

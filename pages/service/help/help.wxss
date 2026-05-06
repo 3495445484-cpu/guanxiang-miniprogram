@@ -1,0 +1,94 @@
+/* ===================== 全局 ===================== */
+.page {
+  min-height: 100vh;
+  background: #F5F6F8;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex; align-items: center;
+  height: 88rpx; padding: 0 32rpx;
+}
+.nav-left { width: 48rpx; display: flex; align-items: center; }
+.nav-back { font-size: 44rpx; color: #00A896; font-weight: bold; }
+.nav-title {
+  font-size: 36rpx; font-weight: 700; color: #00A896;
+  padding-left: 60rpx; flex: 1;
+}
+.nav-right { width: 48rpx; }
+
+/* ===================== 页面主体 ===================== */
+.page-body {
+  padding: 200rpx 32rpx 220rpx;
+  box-sizing: border-box;
+}
+
+/* ===================== Banner 卡片 ===================== */
+.banner-card {
+  background: #00A896;
+  border-radius: 40rpx;
+  padding: 64rpx 36rpx 56rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 168, 150, 0.3);
+  position: relative;
+}
+.banner-title { display: block; font-size: 48rpx; font-weight: 700; color: #FFFFFF; text-align: center; margin-bottom: 8rpx; }
+.banner-sub { display: block; font-size: 48rpx; font-weight: 700; color: #FFFFFF; text-align: center; margin-bottom: 16rpx; }
+.banner-time { display: block; font-size: 28rpx; color: rgba(255, 255, 255, 0.75); text-align: center; }
+.banner-icon { position: absolute; bottom: 24rpx; right: 32rpx; font-size: 80rpx; opacity: 0.25; }
+
+/* ===================== 常见问题 ===================== */
+.faq-section { margin-bottom: 32rpx; }
+.faq-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rpx; }
+.faq-header-title { font-size: 36rpx; font-weight: 700; color: #1A1A1A; }
+.faq-more { font-size: 28rpx; color: #00A896; }
+
+.faq-card { background: #FFFFFF; border-radius: 32rpx; padding: 8rpx 0; box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06); }
+.faq-item { display: flex; align-items: center; padding: 28rpx 28rpx; gap: 20rpx; }
+.faq-icon-wrap { width: 80rpx; height: 80rpx; background: #E8F7F5; border-radius: 24rpx; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.faq-icon { font-size: 40rpx; line-height: 1; }
+.faq-info { flex: 1; display: flex; flex-direction: column; gap: 8rpx; }
+.faq-title { font-size: 32rpx; font-weight: 700; color: #1A1A1A; }
+.faq-desc { font-size: 28rpx; color: #999999; }
+.faq-arrow { font-size: 36rpx; color: #CCCCCC; flex-shrink: 0; }
+.faq-divider { height: 1rpx; background: #F0F0F0; margin: 0 28rpx; }
+
+/* ===================== 底部固定按钮 ===================== */
+.footer-btns {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  gap: 32rpx;
+  padding: 16rpx 32rpx 48rpx;
+  background: #F5F6F8;
+  box-sizing: border-box;
+  z-index: 100;
+}
+.footer-btn {
+  flex: 1;
+  height: 112rpx;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+}
+.footer-btn.online {
+  background: #00A896;
+  box-shadow: 0 4rpx 16rpx rgba(0, 168, 150, 0.3);
+}
+.footer-btn.phone {
+  background: #FFFFFF;
+  border: 2rpx solid #00A896;
+}
+.footer-btn-icon { font-size: 40rpx; }
+.footer-btn.online .footer-btn-icon { font-size: 36rpx; }
+.footer-btn-text { font-size: 32rpx; font-weight: 700; }
+.footer-btn.online .footer-btn-text { color: #FFFFFF; }
+.footer-btn.phone .footer-btn-text { color: #00A896; }

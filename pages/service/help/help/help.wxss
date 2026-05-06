@@ -1,0 +1,287 @@
+/* ============================================
+   全局页面
+   ============================================ */
+.page {
+  min-height: 100vh;
+  background: #F8FAF9;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   页面标题栏（固定顶部，左上角标题）
+   ============================================ */
+.page-title-bar {
+  position: fixed;
+  top: 84rpx;
+  left: 0;
+  right: 0;
+  height: 96rpx;
+  background: #F8FAF9;
+  display: flex;
+  align-items: center;
+  padding: 0 16rpx;
+  z-index: 200;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.back-btn-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.page-title-txt {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  text-align: right;
+  padding-right: 8rpx;
+}
+
+.page-title-right {
+  width: 0;
+}
+
+/* ============================================
+   页面主体（可滚动）
+   ============================================ */
+.page-body {
+  flex: 1;
+  padding: 220rpx 32rpx 200rpx;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Banner 卡片
+   ============================================ */
+.banner {
+  position: relative;
+  background: #00A896;
+  border-radius: 48rpx; /* 24px */
+  padding: 56rpx 40rpx; /* 上下40px */
+  margin-bottom: 48rpx; /* 24px */
+  min-height: 240rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-icon {
+  position: absolute;
+  bottom: 20rpx;  /* 距底部20px */
+  right: 20rpx;   /* 距右边缘20px */
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.banner-icon-img {
+  width: 160rpx;
+  height: 160rpx;
+  opacity: 0.5;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx; /* 12px */
+  text-align: center;
+}
+
+.banner-t1 {
+  font-size: 56rpx; /* 28px */
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.banner-t2 {
+  font-size: 56rpx; /* 28px */
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.banner-t3 {
+  font-size: 32rpx; /* 16px */
+  font-weight: 400;
+  color: #FFFFFF80;
+  white-space: nowrap;
+}
+
+/* ============================================
+   常见问题模块
+   ============================================ */
+.faq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx; /* 12px */
+}
+
+.faq-header-txt {
+  font-size: 44rpx; /* 22px */
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.faq-more {
+  display: flex;
+  align-items: center;
+}
+
+.faq-more-txt {
+  font-size: 32rpx; /* 16px */
+  font-weight: 400;
+  color: #00A896;
+}
+
+/* 问题列表卡片 */
+.faq-card {
+  background: #FFFFFF;
+  border-radius: 40rpx; /* 20px */
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 单个问题条目 */
+.faq-item {
+  display: flex;
+  align-items: center;
+  height: 160rpx; /* 80px */
+  padding: 0 40rpx; /* 左右20px */
+  box-sizing: border-box;
+  gap: 32rpx; /* 16px */
+}
+
+.faq-icon-bg {
+  width: 112rpx; /* 56px */
+  height: 112rpx; /* 56px */
+  background: #E6F7F5;
+  border-radius: 56rpx; /* 28px 圆形 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.faq-icon-img {
+  width: 48rpx; /* 24px */
+  height: 48rpx;
+}
+
+.faq-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx; /* 4px */
+  justify-content: center;
+}
+
+.faq-item-title {
+  font-size: 36rpx; /* 18px */
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 48rpx; /* 24px */
+}
+
+.faq-item-sub {
+  font-size: 28rpx; /* 14px */
+  font-weight: 400;
+  color: #999999;
+  line-height: 40rpx; /* 20px */
+}
+
+.faq-item-arrow {
+  width: 40rpx; /* 20px */
+  height: 40rpx;
+  flex-shrink: 0;
+}
+
+/* 分割线 */
+.faq-divider {
+  height: 1rpx;
+  background: #EEEEEE;
+  margin: 0 40rpx; /* 左右20px */
+}
+
+/* ============================================
+   底部操作按钮（固定底部）
+   ============================================ */
+.bottom-btns {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 32rpx; /* 16px */
+  padding: 0 32rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  background: #F8FAF9;
+  z-index: 200;
+}
+
+.btn-chat,
+.btn-call {
+  flex: 1;
+  height: 112rpx; /* 56px */
+  border-radius: 56rpx; /* 28px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24rpx; /* 12px */
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+}
+
+.btn-chat {
+  background: #00A896;
+}
+
+.btn-chat-icon {
+  width: 48rpx; /* 24px */
+  height: 48rpx;
+}
+
+.btn-chat-txt {
+  font-size: 36rpx; /* 18px */
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.btn-call {
+  background: #FFFFFF;
+  border: 2rpx solid #00A896;
+  box-sizing: border-box;
+}
+
+.btn-call-icon {
+  width: 48rpx; /* 24px */
+  height: 48rpx;
+}
+
+.btn-call-txt {
+  font-size: 36rpx; /* 18px */
+  font-weight: 700;
+  color: #00A896;
+}
+
+/* ============================================
+   点击按压反馈
+   ============================================ */
+.btn-chat:active { opacity: 0.8; transform: scale(0.98); }
+.btn-call:active { opacity: 0.8; transform: scale(0.98); }
+.faq-item:active { background: rgba(0,0,0,0.03); }
+.faq-more:active { opacity: 0.7; }
+.back-btn:active { opacity: 0.7; }

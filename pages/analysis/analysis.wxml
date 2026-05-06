@@ -1,0 +1,219 @@
+<view class="page">
+
+  <!-- 导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">数据分析</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <scroll-view class="page-body {{pageBodyClass}}" scroll-y="true">
+
+    <!-- 园区选择 + 标题 -->
+    <view class="park-row">
+      <view class="park-selector" bindtap="onParkTap">
+        <text class="park-name">{{currentParkName}}</text>
+        <text class="park-arrow">▼</text>
+      </view>
+    </view>
+
+    <!-- ===================== 今日概况 ===================== -->
+    <view class="section">
+      <view class="section-title-row">
+        <text class="section-title-main">今日概况</text>
+        <text class="section-update">更新于 {{updateTime}}</text>
+      </view>
+
+      <view class="overview-grid">
+        <view class="overview-row">
+          <view class="overview-card {{alertItem === 'temperature' ? 'is-alert' : ''}}">
+            <text class="overview-label">温度水平</text>
+            <text class="overview-value">{{overviewTemp}}</text>
+          </view>
+          <view class="overview-card">
+            <text class="overview-label">湿度水平</text>
+            <text class="overview-value">{{overviewHumidity}}</text>
+          </view>
+        </view>
+        <view class="overview-row">
+          <view class="overview-card">
+            <text class="overview-label">养分水平</text>
+            <text class="overview-value {{overviewNutrient === '差' ? 'overview-value-nutrient-red' : ''}}">{{overviewNutrient}}</text>
+          </view>
+          <view class="overview-card">
+            <text class="overview-label">光照强度</text>
+            <text class="overview-value {{overviewLight === '良' ? 'overview-value-light-yellow' : ''}}">{{overviewLight}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- ===================== 环境趋势对比 ===================== -->
+    <view class="section">
+      <view class="section-title-row">
+        <text class="section-title-main">环境趋势对比</text>
+        <view class="section-title-badge">
+          <text class="badge-tick">✓</text>
+          <text class="badge-text">标准范围</text>
+        </view>
+      </view>
+
+      <!-- 切换栏 -->
+      <view class="chart-toggle-bar">
+        <view class="toggle-btn" bindtap="onPeriodTap">
+          <text class="toggle-btn-text">{{currentPeriod}}↘</text>
+        </view>
+        <scroll-view class="toggle-tags" scroll-x="true" enhanced="true" bounces="false">
+          <view class="toggle-tag {{currentTab === '园区综合' ? 'active' : ''}}" bindtap="onTagTap" data-tab="园区综合">
+            <text class="toggle-tag-text">园区综合</text>
+          </view>
+          <view class="toggle-tag {{currentTab === '大气温度' ? 'active' : ''}}" bindtap="onTagTap" data-tab="大气温度">
+            <text class="toggle-tag-text">大气温度</text>
+          </view>
+          <view class="toggle-tag {{currentTab === '空气湿度' ? 'active' : ''}}" bindtap="onTagTap" data-tab="空气湿度">
+            <text class="toggle-tag-text">空气湿度</text>
+          </view>
+          <view class="toggle-tag {{currentTab === '土壤养分' ? 'active' : ''}}" bindtap="onTagTap" data-tab="土壤养分">
+            <text class="toggle-tag-text">土壤养分</text>
+          </view>
+          <view class="toggle-tag {{currentTab === '光照强度' ? 'active' : ''}}" bindtap="onTagTap" data-tab="光照强度">
+            <text class="toggle-tag-text">光照强度</text>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 综合评分区 -->
+      <view class="score-row">
+        <text class="score-label">综合评分 (分)</text>
+        <view class="score-legend">
+          <view class="legend-item">
+            <view class="legend-dot score-dot"></view>
+            <text class="legend-text">综合得分</text>
+          </view>
+          <view class="legend-item">
+            <view class="legend-dot gray"></view>
+            <text class="legend-text">标准区间</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="score-main-row">
+        <text class="score-big">{{score > 0 ? score : '--'}}</text>
+        <view class="score-change" wx:if="{{score > 0}}">
+          <text class="score-arrow">↑</text>
+          <text class="score-change-text">↗ {{scoreChange}}</text>
+        </view>
+      </view>
+
+      <!-- 折线图 -->
+      <view class="chart-card">
+        <canvas canvas-id="lineChart" class="chart-canvas" bindtouchstart="onChartTouch"></canvas>
+      </view>
+    </view>
+
+    <!-- ===================== 详细数据 ===================== -->
+    <view class="section">
+      <view class="section-title-row">
+        <text class="section-title-main">详细数据</text>
+      </view>
+
+      <!-- 空气湿度 -->
+      <view class="detail-card {{humidityHighlighted ? 'is-alert' : ''}}">
+        <view class="detail-left">
+          <view class="detail-icon-bg">
+            <image src="/pages/home/img-health/wet.png" style="width:16px;height:20px;" />
+          </view>
+          <view class="detail-info">
+            <text class="detail-title">空气湿度</text>
+            <text class="detail-sub">环比昨日 +2.4%</text>
+          </view>
+        </view>
+        <view class="detail-right">
+          <text class="detail-big {{humidityHighlighted ? '' : 'detail-big-normal'}}">{{detailData.humidity.value}}</text>
+          <text class="detail-tag {{humidityHighlighted ? 'detail-tag-green' : 'detail-tag-normal'}}">{{detailData.humidity.status}}</text>
+        </view>
+      </view>
+
+      <!-- 累积光照 -->
+      <view class="detail-card {{lightHighlighted ? 'is-alert' : ''}}">
+        <view class="detail-left">
+          <view class="detail-icon-bg">
+            <image src="/pages/home/img-health/sun-1.png" style="width:22px;height:22px;" />
+          </view>
+          <view class="detail-info">
+            <text class="detail-title">累积光照</text>
+            <text class="detail-sub">当前 42000 Lux</text>
+          </view>
+        </view>
+        <view class="detail-right">
+          <text class="detail-big {{lightHighlighted ? '' : 'detail-big-normal'}}">{{detailData.light.value}}</text>
+          <text class="detail-tag {{lightHighlighted ? 'detail-tag-light' : 'detail-tag-normal'}}">{{detailData.light.status}}</text>
+        </view>
+      </view>
+
+      <!-- 土壤养分 -->
+      <view class="detail-card {{nutrientHighlighted ? 'is-alert' : ''}}">
+        <view class="detail-left">
+          <view class="detail-icon-bg">
+            <image src="/pages/home/img-health/plant.png" style="width:18px;height:20px;" />
+          </view>
+          <view class="detail-info">
+            <text class="detail-title">土壤养分</text>
+            <text class="detail-sub">{{detailData.nutrient.sub}}</text>
+          </view>
+        </view>
+        <view class="detail-right">
+          <text class="detail-big {{nutrientHighlighted ? '' : 'detail-big-normal'}}">{{detailData.nutrient.value}}</text>
+          <text class="detail-tag {{nutrientHighlighted ? 'detail-tag-green' : 'detail-tag-normal'}}">{{detailData.nutrient.status}}</text>
+        </view>
+      </view>
+
+      <!-- 空气温度 -->
+      <view class="detail-card {{temperatureHighlighted ? 'is-alert' : ''}}">
+        <view class="detail-left">
+          <view class="detail-icon-bg">
+            <image src="/pages/home/img-health/temperture.png" style="width:10px;height:20px;" />
+          </view>
+          <view class="detail-info">
+            <text class="detail-title">空气温度</text>
+            <text class="detail-sub">当前环境温度</text>
+          </view>
+        </view>
+        <view class="detail-right">
+          <text class="detail-big {{temperatureHighlighted ? '' : 'detail-big-normal'}}">{{detailData.temperature.value}}</text>
+          <text class="detail-tag {{temperatureHighlighted ? 'detail-tag-green' : 'detail-tag-normal'}}">{{detailData.temperature.status}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- ===================== AI 智能分析 ===================== -->
+    <view class="section">
+      <view class="section-title-row">
+        <text class="section-title-main">AI 智能分析</text>
+      </view>
+
+      <view class="ai-card">
+        <view class="ai-header">
+          <text class="ai-header-title">{{aiData.title}}</text>
+          <text class="ai-header-sub">{{aiData.sub}}</text>
+        </view>
+
+        <view class="ai-suggestion" wx:for="{{aiData.suggestions}}" wx:key="index">
+          <text class="ai-suggestion-dot">•</text>
+          <text class="ai-suggestion-text">{{item}}</text>
+        </view>
+
+        <view class="ai-action-btn" bindtap="onAIExecute" wx:if="{{aiData.hasAction !== false}}">
+          <text class="ai-action-btn-text">立即执行 →</text>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+
+</view>

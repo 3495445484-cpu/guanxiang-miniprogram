@@ -1,0 +1,190 @@
+/* ===================== 全局 ===================== */
+page {
+  background: #F5F6F8;
+}
+.page {
+  min-height: 100vh;
+  background: #F5F6F8;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #F5F6F8;
+  z-index: 100;
+}
+.nav-bar-inner {
+  display: flex;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 32rpx;
+}
+.nav-left {
+  width: 48rpx;
+  display: flex;
+  align-items: center;
+}
+.nav-back {
+  font-size: 44rpx;
+  color: #00A896;
+  font-weight: bold;
+}
+.nav-title {
+  flex: 1;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #00A896;
+}
+.nav-right {
+  width: 48rpx;
+}
+
+/* ===================== 页面主体 ===================== */
+.page-body {
+  padding: 192rpx 32rpx 60rpx;
+  box-sizing: border-box;
+}
+
+/* ===================== 模块 ===================== */
+.module {
+  margin-bottom: 32rpx;
+}
+.module-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-bottom: 20rpx;
+}
+
+/* ===================== 信息卡片 ===================== */
+.info-card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+/* ===================== 头像区 ===================== */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 32rpx;
+}
+.avatar-wrap {
+  position: relative;
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 20rpx;
+}
+.avatar-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.avatar-camera {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  width: 52rpx;
+  height: 52rpx;
+  background: #00A896;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4rpx solid #FFFFFF;
+  box-sizing: border-box;
+}
+.camera-icon {
+  font-size: 26rpx;
+  line-height: 1;
+}
+.avatar-edit-tag {
+  background: #E8F7F5;
+  border-radius: 24rpx;
+  padding: 8rpx 24rpx;
+}
+.avatar-edit-tag text {
+  font-size: 28rpx;
+  color: #00A896;
+  font-weight: 600;
+}
+
+/* ===================== 分割线 ===================== */
+.divider {
+  height: 1rpx;
+  background: #F0F0F0;
+  margin: 0 28rpx;
+}
+
+/* ===================== 信息条目 ===================== */
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 28rpx;
+}
+.info-label {
+  font-size: 32rpx;
+  color: #666666;
+  flex-shrink: 0;
+}
+.info-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  flex: 1;
+  justify-content: flex-end;
+}
+.info-value {
+  font-size: 32rpx;
+  color: #1A1A1A;
+  font-weight: 600;
+}
+.info-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4rpx;
+}
+.info-sub {
+  font-size: 24rpx;
+  color: #999999;
+}
+.info-arrow {
+  font-size: 36rpx;
+  color: #CCCCCC;
+}
+
+/* ===================== 操作按钮 ===================== */
+.action-btn {
+  background: #00A896;
+  border-radius: 20rpx;
+  padding: 8rpx 20rpx;
+  flex-shrink: 0;
+}
+.action-btn text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+/* ===================== 退出按钮 ===================== */
+.logout-btn {
+  background: #FFE8E8;
+  border-radius: 32rpx;
+  height: 112rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logout-text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FF3B30;
+}

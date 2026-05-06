@@ -1,0 +1,128 @@
+<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-bar-inner">
+      <view class="nav-left" bindtap="goBack">
+        <text class="nav-back">←</text>
+      </view>
+      <text class="nav-title">设置</text>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- 页面主体 -->
+  <view class="page-body">
+
+    <!-- 通用设置模块 -->
+    <view class="module">
+      <text class="module-title">通用设置</text>
+      <view class="settings-card">
+        <!-- 自动更新 -->
+        <view class="setting-item">
+          <view class="setting-left">
+            <view class="setting-icon-wrap">
+              <image class="setting-icon" src="/images/return.png" mode="aspectFit" style="width:20px;height:20px;" />
+            </view>
+            <view class="setting-info">
+              <text class="setting-name">自动更新</text>
+              <text class="setting-desc">版本信息 v4.2.8</text>
+            </view>
+          </view>
+          <view class="setting-switch {{autoUpdate ? 'on' : 'off'}}" bindtap="toggleAutoUpdate">
+            <view class="switch-track {{autoUpdate ? '' : 'off-track'}}">
+              <view class="switch-thumb {{autoUpdate ? '' : 'off-thumb'}}"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="setting-divider"></view>
+
+        <!-- 消息通知 -->
+        <view class="setting-item">
+          <view class="setting-left">
+            <view class="setting-icon-wrap">
+              <image class="setting-icon" src="/images/bell.png" mode="aspectFit" style="width:20px;height:20px;" />
+            </view>
+            <view class="setting-info">
+              <text class="setting-name">消息通知</text>
+              <text class="setting-desc">重要种植预警与设备告警</text>
+            </view>
+          </view>
+          <view class="setting-switch {{notify ? 'on' : 'off'}}" bindtap="toggleNotify">
+            <view class="switch-track {{notify ? '' : 'off-track'}}">
+              <view class="switch-thumb {{notify ? '' : 'off-thumb'}}"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="setting-divider"></view>
+
+        <!-- 语音播报 -->
+        <view class="setting-item">
+          <view class="setting-left">
+            <view class="setting-icon-wrap">
+              <image class="setting-icon" src="/images/Speaker-one.png" mode="aspectFit" style="width:22px;height:22px;" />
+            </view>
+            <view class="setting-info">
+              <text class="setting-name">语音播报</text>
+              <text class="setting-desc">点击页面文字自动朗读</text>
+            </view>
+          </view>
+          <view class="setting-switch {{voiceBroadcast ? 'on' : 'off'}}" bindtap="toggleVoiceBroadcast">
+            <view class="switch-track {{voiceBroadcast ? '' : 'off-track'}}">
+              <view class="switch-thumb {{voiceBroadcast ? '' : 'off-thumb'}}"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 显示与偏好模块 -->
+    <view class="module">
+      <text class="module-title">显示与偏好</text>
+      <view class="settings-card">
+        <!-- 深色模式 -->
+        <view class="setting-item">
+          <view class="setting-left">
+            <view class="setting-icon-wrap">
+              <image class="setting-icon" src="/images/night.png" mode="aspectFit" style="width:20px;height:20px;" />
+            </view>
+            <view class="setting-info">
+              <text class="setting-name">深色模式</text>
+              <text class="setting-desc">减少夜间使用的视觉疲劳</text>
+            </view>
+          </view>
+          <view class="setting-switch {{darkMode ? 'on' : 'off'}}" bindtap="toggleDark">
+            <view class="switch-track {{darkMode ? '' : 'off-track'}}">
+              <view class="switch-thumb {{darkMode ? '' : 'off-thumb'}}"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="setting-divider"></view>
+
+        <!-- 字体大小 -->
+        <view class="setting-item">
+          <view class="setting-left">
+            <view class="setting-icon-wrap">
+              <image class="setting-icon" src="/images/Test.png" mode="aspectFit" style="width:20px;height:20px;" />
+            </view>
+            <view class="setting-info full-width">
+              <text class="setting-name">字体大小</text>
+              <view class="font-progress">
+                <slider class="font-slider" value="{{fontIndex}}" min="0" max="3" step="1" activeColor="#00A896" backgroundColor="#E8F7F5" blockColor="#FFFFFF" blockSize="24" bindchanging="onFontChanging" bindchange="onFontChange" />
+                <view class="font-options">
+                  <text class="font-opt {{fontIndex === 0 ? 'active' : ''}}" data-index="0">标准</text>
+                  <text class="font-opt {{fontIndex === 1 ? 'active' : ''}}" data-index="1">较大</text>
+                  <text class="font-opt {{fontIndex === 2 ? 'active' : ''}}" data-index="2">农忙大字</text>
+                  <text class="font-opt {{fontIndex === 3 ? 'active' : ''}}" data-index="3">超大</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>

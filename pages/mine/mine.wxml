@@ -1,0 +1,151 @@
+<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}" style="padding-top:{{statusBarHeight + 50}}px;--base-size:{{_baseFontSize}};">
+  <!-- ===================== 顶部导航 ===================== -->
+  <view class="top-nav">
+    <view class="nav-content" style="padding-top: {{statusBarHeight + 20}}px;">
+      <view class="nav-left">
+        <image class="leaf-icon" src="img-health/leaf.png" style="width:17.04px;height:17.02px;" />
+        <view class="park-selector" bindtap="showParkPicker" style="margin-top: -12rpx;">
+          <text class="park-name" style="{{titleStyle}}">{{currentPark.name}}</text>
+          <image class="arrow" src="img-health/down arrow.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 用户信息大卡片 ===================== -->
+  <view class="user-card">
+    <view class="avatar-wrap">
+      <image class="avatar" src="/images/malou-bg.png" mode="aspectFill"></image>
+      <view class="avatar-badge">
+        <text class="badge-check">✓</text>
+      </view>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userName}}</text>
+      <view class="online-tag">
+        <view class="online-dot"></view>
+        <text class="online-text">在线状态：运行良好</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 数据统计双卡片 ===================== -->
+  <view class="stats-row">
+    <view class="stat-card">
+      <image class="stat-icon" src="img-health/plant.png" mode="aspectFit" />
+      <text class="stat-value">{{parkList.length}}</text>
+      <text class="stat-label">在管园区</text>
+    </view>
+    <view class="stat-card">
+      <image class="stat-icon" src="img-health/return.png" mode="aspectFit" />
+      <text class="stat-value">98.5%</text>
+      <text class="stat-label">健康指数</text>
+    </view>
+  </view>
+
+  <!-- ===================== 系统管理卡片 ===================== -->
+  <view class="menu-card">
+    <text class="section-title">系统管理</text>
+
+    <!-- 编辑园区 -->
+    <view class="menu-item" bindtap="goProfile">
+      <view class="menu-icon-wrap">
+        <image class="menu-icon" src="img-health/building.png" mode="aspectFit" />
+      </view>
+      <text class="menu-text">编辑园区</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 账号管理 -->
+    <view class="menu-item" bindtap="goAccount">
+      <view class="menu-icon-wrap">
+        <image class="menu-icon" src="img-health/account.png" mode="aspectFit" />
+      </view>
+      <text class="menu-text">账号管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+
+    <!-- 帮助与支持 -->
+    <view class="menu-item" bindtap="goHelp">
+      <view class="menu-icon-wrap">
+        <image class="menu-icon" src="img-health/custom service.png" mode="aspectFit" />
+      </view>
+      <text class="menu-text">帮助与支持</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 关于我们 -->
+    <view class="menu-item no-border" bindtap="goAbout">
+      <view class="menu-icon-wrap">
+        <image class="menu-icon" src="img-health/building.png" mode="aspectFit" />
+      </view>
+      <text class="menu-text">关于我们</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <!-- 设置 -->
+    <view class="menu-item no-border" bindtap="goSettings">
+      <view class="menu-icon-wrap">
+        <image class="menu-icon" src="img-health/Vector.png" mode="aspectFit" />
+      </view>
+      <text class="menu-text">设置</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- ===================== 底部固定导航 ===================== -->
+  <view class="bottom-nav-1">
+    <!-- 首页 -->
+    <view class="bottom-nav-1-item" bindtap="goHome">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/home.png" style="width:18px;height:18px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>首页</text>
+      </view>
+    </view>
+    <!-- 远程 -->
+    <view class="bottom-nav-1-item" bindtap="goRemote">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/control1.png" style="width:15.55px;height:23px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>远程</text>
+      </view>
+    </view>
+    <!-- 我的 -->
+    <view class="bottom-nav-1-item active">
+      <view class="bottom-nav-1-item-1">
+        <view class="bottom-nav-1-item-1-1"></view>
+        <view class="bottom-nav-1-item-2">
+          <image src="img-health/me1.png" style="width:16px;height:16px;" />
+        </view>
+        <view class="bottom-nav-1-item-3">
+          <text>我的</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 添加园区弹窗 ===================== -->
+  <add-park-modal visible="{{showAddPark}}" bind:close="hideAddPark" />
+
+  <!-- ===================== 园区选择器弹窗 ===================== -->
+  <view class="modal-overlay" wx:if="{{showParkPicker}}" catchtap="hideParkPicker">
+    <view class="park-picker-modal" catchtap="stopPropagation">
+      <text class="picker-title">选择园区</text>
+      <block wx:for="{{parkList}}" wx:key="id">
+        <view class="picker-item {{item.id === currentParkId ? 'selected' : ''}}" catchtap="selectPark" data-id="{{item.id}}">
+          <view class="picker-item-info">
+            <text class="picker-item-name">{{item.name}}</text>
+            <text class="picker-item-addr">{{item.address}}</text>
+          </view>
+          <view class="picker-item-status {{item.statusClass}}">
+            <text>{{item.displayStatus || '健康'}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,194 @@
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  width: 88%;
+  background: linear-gradient(180deg, #F0F8F5 0%, #FFFFFF 100%);
+  border-radius: 48rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===================== 顶部区域 ===================== */
+.modal-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48rpx;
+}
+
+.modal-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+}
+
+.modal-avatar-img {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 24rpx;
+}
+
+.modal-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 12rpx;
+  letter-spacing: 2rpx;
+}
+
+.modal-subtitle {
+  font-size: 28rpx;
+  color: #666666;
+  margin-bottom: 40rpx;
+}
+
+/* ===================== 表单区 ===================== */
+.modal-form {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  padding: 40rpx 40rpx 48rpx;
+}
+
+.current-phone {
+  margin-bottom: 16rpx;
+}
+
+.current-phone-label {
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  font-weight: 400;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #F5F5F5;
+  border-radius: 40rpx;
+  height: 96rpx;
+  padding: 0 32rpx;
+  border: 4rpx solid transparent;
+}
+
+.input-wrapper:focus-within {
+  border-color: #00A896;
+  background: #FFFFFF;
+}
+
+.input-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.input-field {
+  flex: 1;
+  height: 96rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.input-field::placeholder {
+  color: #AAAAAA;
+}
+
+/* ===================== 验证码行 ===================== */
+.code-wrapper {
+  display: flex;
+  gap: 16rpx;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.send-code-btn {
+  height: 96rpx;
+  padding: 0 24rpx;
+  background: #D1F0EB;
+  border: none;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #00A896;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.send-code-btn::after {
+  border: none;
+}
+
+.send-code-btn[disabled] {
+  color: #AAAAAA;
+  background: #EEEEEE;
+}
+
+/* ===================== 提交按钮 ===================== */
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background: #00A896;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 168, 150, 0.3);
+}
+
+.submit-btn text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+}
+
+/* ===================== 关闭按钮 ===================== */
+.modal-close {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  width: 56rpx;
+  height: 56rpx;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-icon {
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 1;
+}

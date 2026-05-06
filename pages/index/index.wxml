@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="header">
+    <text class="greeting">欢迎回来</text>
+    <text class="username">{{username}}</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">🌱 莞香树状态</text>
+    <view class="status-grid">
+      <view class="status-item">
+        <text class="status-value">26°C</text>
+        <text class="status-label">温度</text>
+      </view>
+      <view class="status-item">
+        <text class="status-value">65%</text>
+        <text class="status-label">湿度</text>
+      </view>
+      <view class="status-item">
+        <text class="status-value">正常</text>
+        <text class="status-label">生长状态</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">📊 数据概览</text>
+    <view class="data-list">
+      <view class="data-item">
+        <text>种植批次</text>
+        <text class="data-value">5</text>
+      </view>
+      <view class="data-item">
+        <text>浇水次数</text>
+        <text class="data-value">12</text>
+      </view>
+      <view class="data-item">
+        <text>施肥记录</text>
+        <text class="data-value">3</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="card-title">📝 最近操作</text>
+    <view class="record-list">
+      <view class="record-item">
+        <text>🌿 2024-01-15 浇水</text>
+      </view>
+      <view class="record-item">
+        <text>🌿 2024-01-10 施肥</text>
+      </view>
+      <view class="record-item">
+        <text>🌿 2024-01-05 浇水</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="btn-logout" bindtap="logout">退出登录</button>
+</view>

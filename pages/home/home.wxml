@@ -1,0 +1,367 @@
+<!-- AI辅助生成：豆包网页版2026-->
+<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}" style="padding-top:{{statusBarHeight + 50}}px;--base-size:{{_baseFontSize}};">
+  <!-- ===================== 顶部导航 ===================== -->
+  <view class="top-nav">
+    <view class="nav-content" style="padding-top: {{statusBarHeight + 20}}px;">
+      <view class="nav-left">
+        <image class="leaf-icon" src="img-health/leaf.png" style="width:17.04px;height:17.02px;" />
+        <view class="park-selector" bindtap="showParkPicker" style="margin-top: -12rpx;">
+          <text class="park-name" style="{{titleStyle}}">{{currentPark.name}}</text>
+          <image class="arrow" src="img-health/down arrow.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 核心园区卡片 ===================== -->
+  <view class="park-card">
+    <view class="park-card-overlay-top"></view>
+    <view class="park-card-overlay-bottom"></view>
+    <view class="health-tag {{currentPark.healthClass}} {{parkStatus === 'warning' ? 'health-tag-warning' : parkStatus === 'danger' ? 'health-tag-danger' : ''}}">
+      <image src="img-health/heart.png" style="width:8.33px;height:7.65px;margin-left:0;margin-right:6rpx;" />
+      <text class="health-tag-text">健康指数：{{currentPark.healthScore}}（{{currentPark.healthStatus}}）</text>
+    </view>
+    <text class="park-title">{{currentPark.displayName}}</text>
+    <view style="display:flex;flex-direction:row;align-items:center;margin-left:16rpx;margin-bottom:16px;">
+      <image src="img-health/landmark.png" style="width:9.33px;height:11.67px;opacity:0.8;margin-right:6px;" />
+      <text class="park-address">{{currentPark.address}} · 莞香核心产区</text>
+    </view>
+    <view class="weather-right">
+      <view class="weather-row-1">
+        <text class="wind-text">{{weatherData.windText}}</text>
+        <view class="wind-divider"></view>
+        <text class="weather-desc-text">{{weatherData.weather}}</text>
+        <image class="weather-icon" src="img-health/sun.png" />
+      </view>
+      <view class="temp-wrap">
+        <view style="display:flex;align-items:baseline;justify-content:flex-end;">
+          <text class="temp">{{weatherData.temperature}}</text>
+          <text class="temp-unit">℃</text>
+        </view>
+        <text class="weather-source">实时气象数据</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 功能快捷入口 ===================== -->
+  <view class="quick-entry">
+    <view class="quick-btn quick-btn-1" bindtap="goVideo">
+      <view class="quick-btn-inner">
+        <view class="quick-icon-wrapper">
+          <view class="quick-icon-container">
+            <image class="quick-icon" src="img-health/monitor.png" />
+          </view>
+        </view>
+        <view class="quick-text-wrapper">
+          <text class="quick-text">实时视频</text>
+        </view>
+      </view>
+    </view>
+    <view class="quick-btn quick-btn-2" bindtap="goAnalysis">
+      <view class="quick-btn-inner">
+        <view class="quick-icon-wrapper">
+          <view class="quick-icon-container">
+            <image class="quick-icon" src="img-health/analyse.png" />
+          </view>
+        </view>
+        <view class="quick-text-wrapper">
+          <text class="quick-text">数据分析</text>
+        </view>
+      </view>
+    </view>
+    <view class="quick-btn quick-btn-3" bindtap="goAlarm">
+      <view class="quick-btn-inner">
+        <view class="quick-icon-wrapper">
+          <view class="quick-icon-container">
+            <image class="quick-icon" src="img-health/attention.png" />
+          </view>
+        </view>
+        <view class="quick-text-wrapper">
+          <text class="quick-text">超限警报</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 实时环境监测区 ===================== -->
+  <view class="section">
+    <view class="env-section-header" style="margin-bottom:16px;">
+      <text class="env-title">实时环境监测</text>
+      <text class="env-sub">实时数据</text>
+    </view>
+
+    <view class="env-cards-grid">
+
+      <!-- 温度 -->
+      <view class="env-card env-card-1" catchtap="onEnvCardTap" data-type="temperature" style="position:relative;width:100%;height:100%;background:white;box-shadow:0px 1px 2px rgba(0,0,0,0.05);border-radius:24px;outline:1px rgba(187,202,197,0.10) solid;outline-offset:-1px">
+        <view style="position:absolute;top:21px;left:21px;width:44px;height:44px;background:rgba(0,168,150,0.05);border-radius:24px;display:inline-flex;justify-content:center;align-items:center;">
+          <view style="flex-direction:column;justify-content:flex-start;align-items:flex-start;display:inline-flex;">
+            <image src="img-health/temperture.png" style="width:10px;height:20px;" />
+          </view>
+        </view>
+        <view style="position:absolute;top:81px;left:21px;width:121px;flex-direction:column;justify-content:flex-start;align-items:flex-start;">
+          <text style="width:22px;height:17px;justify-content:center;display:flex;flex-direction:column;color:#3C4946;font-size:11px;font-family:Manrope;font-weight:400;text-transform:uppercase;line-height:16.50px;">温度</text>
+        </view>
+        <view style="position:absolute;top:101.50px;left:21px;width:121px;height:45.50px;flex-direction:column;justify-content:flex-start;align-items:flex-start;display:flex;">
+          <view style="width:78.44px;height:32px;display:flex;flex-direction:row;justify-content:flex-start;align-items:baseline;">
+            <view style="margin-right:4px;display:flex;flex-direction:column;justify-content:center;color:#171D1B;font-size:24px;font-family:Inter;font-weight:900;line-height:32px;letter-spacing:-1.2px;">{{sensorWeatherData.temperature}}</view>
+            <view style="width:25px;height:16px;display:flex;flex-direction:column;justify-content:center;color:#3C4946;font-size:12px;font-family:Manrope;font-weight:700;line-height:16px;">°C</view>
+          </view>
+          <view style="width:77.94px;height:14px;margin-top:4px;display:flex;flex-direction:column;justify-content:center;color:rgba(60,73,70,0.6);font-size:9px;font-family:Manrope;font-weight:500;line-height:13.50px;">最佳范围: 22-28°C</view>
+        </view>
+        <view style="position:absolute;top:12.50px;left:102px;width:19px;height:9px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
+            <path d="M14.5 9L13.075 7.6L15.175 5.5H0V3.5H15.175L13.1 1.4L14.525 0L19 4.5L14.5 9Z" fill="#00A896"/>
+          </svg>
+        </view>
+        <view style="position:absolute;bottom:16px;right:16px;font-size:18px;color:#00A896;font-weight:700;">→</view>
+      </view>
+
+      <!-- 湿度 -->
+      <view class="env-card env-card-2" catchtap="onEnvCardTap" data-type="humidity" style="position:relative;width:100%;height:100%;background:white;box-shadow:0px 1px 2px rgba(0,0,0,0.05);border-radius:24px;outline:1px rgba(187,202,197,0.10) solid;outline-offset:-1px">
+        <view style="position:absolute;top:21px;left:21px;width:44px;height:44px;background:rgba(0,168,150,0.05);border-radius:24px;display:inline-flex;justify-content:center;align-items:center;">
+          <view style="flex-direction:column;justify-content:flex-start;align-items:flex-start;display:inline-flex;">
+            <image src="img-health/wet.png" style="width:16px;height:20px;" />
+          </view>
+        </view>
+        <view style="position:absolute;top:81px;left:21px;width:121px;flex-direction:column;justify-content:flex-start;align-items:flex-start;">
+          <text style="width:22px;height:17px;justify-content:center;display:flex;flex-direction:column;color:#3C4946;font-size:11px;font-family:Manrope;font-weight:400;text-transform:uppercase;line-height:16.50px;">湿度</text>
+        </view>
+        <view style="position:absolute;top:101.50px;left:21px;width:121px;height:45.50px;flex-direction:column;justify-content:flex-start;align-items:flex-start;display:flex;">
+          <view style="width:78.44px;height:32px;display:flex;flex-direction:row;justify-content:flex-start;align-items:baseline;">
+            <view style="margin-right:4px;display:flex;flex-direction:column;justify-content:center;color:#171D1B;font-size:24px;font-family:Inter;font-weight:900;line-height:32px;">{{sensorWeatherData.humidity}}</view>
+            <view style="width:25px;height:16px;display:flex;flex-direction:column;justify-content:center;color:#3C4946;font-size:12px;font-family:Manrope;font-weight:700;line-height:16px;">%</view>
+          </view>
+          <view style="width:77.94px;height:14px;margin-top:4px;display:flex;flex-direction:column;justify-content:center;color:rgba(60,73,70,0.60);font-size:9px;font-family:Manrope;font-weight:500;line-height:13.50px;">标准水平: 60-70%</view>
+        </view>
+        <view style="position:absolute;top:12.50px;left:102px;width:19px;height:9px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
+            <path d="M14.5 9L13.075 7.6L15.175 5.5H0V3.5H15.175L13.1 1.4L14.525 0L19 4.5L14.5 9Z" fill="#00A896"/>
+          </svg>
+        </view>
+        <view style="position:absolute;bottom:16px;right:16px;font-size:18px;color:#00A896;font-weight:700;">→</view>
+      </view>
+
+      <!-- 土壤养分 -->
+      <view class="env-card env-card-3 {{abnormalType === 'soil' && parkStatus === 'danger' ? 'env-card-abnormal' : ''}}" catchtap="onEnvCardTap" data-type="nutrient" style="position:relative;width:100%;height:100%;background:white;box-shadow:0px 1px 2px rgba(0,0,0,0.05);border-radius:24px;outline:1px rgba(187,202,197,0.10) solid;outline-offset:-1px">
+        <view style="position:absolute;top:21px;left:21px;width:44px;height:44px;background:rgba(0,168,150,0.05);border-radius:24px;display:inline-flex;justify-content:center;align-items:center;">
+          <view style="flex-direction:column;justify-content:flex-start;align-items:flex-start;display:inline-flex;">
+            <image src="img-health/plant.png" style="width:18px;height:20px;" />
+          </view>
+        </view>
+        <view style="position:absolute;top:81px;left:21px;width:121px;flex-direction:column;justify-content:flex-start;align-items:flex-start;">
+          <text style="width:44px;height:17px;justify-content:center;display:flex;flex-direction:column;color:#3C4946;font-size:11px;font-family:Manrope;font-weight:400;text-transform:uppercase;line-height:16.50px;">土壤养分</text>
+        </view>
+        <view style="position:absolute;top:101.50px;left:21px;width:121px;height:45.50px;flex-direction:column;justify-content:flex-start;align-items:flex-start;display:flex;">
+          <view style="width:78.44px;height:32px;display:flex;flex-direction:row;justify-content:flex-start;align-items:baseline;">
+            <view style="margin-right:4px;display:flex;flex-direction:column;justify-content:center;color:#171D1B;font-size:24px;font-family:Inter;font-weight:900;line-height:32px;">{{currentPark.nutrient}}</view>
+            <view style="width:25px;height:16px;display:flex;flex-direction:column;justify-content:center;color:#3C4946;font-size:12px;font-family:Manrope;font-weight:700;line-height:16px;">%</view>
+          </view>
+          <view style="width:77.94px;height:14px;margin-top:4px;display:flex;flex-direction:column;justify-content:center;color:rgba(60,73,70,0.60);font-size:9px;font-family:Manrope;font-weight:500;line-height:13.50px;">必备元素: NPK</view>
+        </view>
+        <view style="position:absolute;top:12.50px;left:102px;width:19px;height:9px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
+            <path d="M14.5 9L13.075 7.6L15.175 5.5H0V3.5H15.175L13.1 1.4L14.525 0L19 4.5L14.5 9Z" fill="#00A896"/>
+          </svg>
+        </view>
+        <image wx:if="{{abnormalType === 'soil' && parkStatus === 'danger'}}" style="position:absolute;bottom:16px;right:16px;width:18px;height:18px;" src="img-health/down.png" />
+        <view wx:else style="position:absolute;bottom:16px;right:16px;font-size:18px;color:#00A896;font-weight:700;">→</view>
+      </view>
+
+      <!-- 光照强度 -->
+      <view class="env-card env-card-4 {{abnormalType === 'light' && parkStatus === 'warning' ? 'env-card-abnormal' : ''}}" catchtap="onEnvCardTap" data-type="light" style="position:relative;width:100%;height:100%;background:white;box-shadow:0px 1px 2px rgba(0,0,0,0.05);border-radius:24px;outline:1px rgba(187,202,197,0.10) solid;outline-offset:-1px">
+        <view style="position:absolute;top:21px;left:21px;width:44px;height:44px;background:rgba(0,168,150,0.05);border-radius:24px;display:inline-flex;justify-content:center;align-items:center;">
+          <view style="flex-direction:column;justify-content:flex-start;align-items:flex-start;display:inline-flex;">
+            <image src="img-health/sun-1.png" style="width:22px;height:22px;" />
+          </view>
+        </view>
+        <view style="position:absolute;top:81px;left:21px;width:121px;flex-direction:column;justify-content:flex-start;align-items:flex-start;">
+          <text style="width:55px;height:17px;justify-content:center;display:flex;flex-direction:column;color:#3C4946;font-size:11px;font-family:Manrope;font-weight:400;text-transform:uppercase;line-height:16.50px;">光照强度</text>
+        </view>
+        <view style="position:absolute;top:101.50px;left:21px;width:121px;height:45.50px;flex-direction:column;justify-content:flex-start;align-items:flex-start;display:flex;">
+          <view style="width:78.44px;height:32px;display:flex;flex-direction:row;justify-content:flex-start;align-items:baseline;">
+            <view style="margin-right:4px;display:flex;flex-direction:column;justify-content:center;color:#171D1B;font-size:24px;font-family:Inter;font-weight:900;line-height:32px;">{{currentPark.light}}</view>
+            <view style="width:25px;height:16px;display:flex;flex-direction:column;justify-content:center;color:#3C4946;font-size:12px;font-family:Manrope;font-weight:700;line-height:16px;">klx</view>
+          </view>
+          <view style="width:77.94px;height:14px;margin-top:4px;display:flex;flex-direction:column;justify-content:center;color:rgba(60,73,70,0.60);font-size:9px;font-family:Manrope;font-weight:500;line-height:13.50px;">日照需求: 12h/d</view>
+        </view>
+        <view style="position:absolute;top:12.50px;left:102px;width:19px;height:9px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
+            <path d="M14.5 9L13.075 7.6L15.175 5.5H0V3.5H15.175L13.1 1.4L14.525 0L19 4.5L14.5 9Z" fill="#00A896"/>
+          </svg>
+        </view>
+        <image wx:if="{{abnormalType === 'light' && parkStatus === 'warning'}}" style="position:absolute;bottom:16px;right:16px;width:18px;height:18px;" src="img-health/up.png" />
+        <view wx:else style="position:absolute;bottom:16px;right:16px;font-size:18px;color:#00A896;font-weight:700;">→</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 决策控制中心 ===================== -->
+  <!-- 1: 整个容器 -->
+  <view class="decision-1">
+    <!-- 1.1: 主卡片 -->
+    <view class="decision-1-1">
+      <!-- 1.1.1: 标题行 -->
+      <view class="decision-1-1-1">
+        <!-- 1.1.1.1: 标题 -->
+        <view class="decision-1-1-1-1">
+          <text class="decision-1-1-1-1-1">决策控制中心</text>
+        </view>
+        <!-- 1.1.1.2: 开关 -->
+        <view class="decision-1-1-1-2" bindtap="toggleAutoMode">
+          <view class="decision-1-1-1-2-1">
+            <text class="decision-1-1-1-2-1-1">自动模式</text>
+          </view>
+          <view class="decision-1-1-1-2-2">
+            <view style="width:40px;height:20px;border-radius:10px;background:{{autoMode ? '#00A896' : '#EEEEEE'}};position:relative;">
+              <view style="position:absolute;top:4px;width:12px;height:12px;border-radius:6px;background:white;left:{{autoMode ? 24 : 4}}px;"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 1.1.2: 四按钮grid -->
+      <view class="decision-1-1-2">
+        <!-- 按钮1: 灌溉 -->
+        <view class="decision-1-1-2-1 btn1 {{deviceStatus.irrigation.running ? 'active' : ''}}" bindtap="toggleIrrigation">
+          <view class="decision-1-1-2-1-1">
+            <image wx:if="{{deviceStatus.irrigation.running}}" src="img-health/water.png" style="width:16px;height:20px;" />
+            <image wx:else src="img-health/water1.png" style="width:16px;height:20px;" />
+          </view>
+        </view>
+        <view class="decision-1-1-2-2 btn1-label {{deviceStatus.irrigation.running ? 'active' : ''}}" bindtap="toggleIrrigation">
+          <text class="decision-1-1-2-2-1">{{deviceStatus.irrigation.running ? '运行中' : '灌溉'}}</text>
+        </view>
+        <!-- 按钮2: 通风 -->
+        <view class="decision-1-1-2-1 btn2 {{deviceStatus.ventilation.running ? 'active' : ''}}" bindtap="toggleVentilation">
+          <view class="decision-1-1-2-1-1">
+            <image wx:if="{{deviceStatus.ventilation.running}}" src="img-health/wind.png" style="width:20px;height:17px;" />
+            <image wx:else src="img-health/wind1.png" style="width:20px;height:17px;" />
+          </view>
+        </view>
+        <view class="decision-1-1-2-2 btn2-label {{deviceStatus.ventilation.running ? 'active' : ''}}" bindtap="toggleVentilation">
+          <text class="decision-1-1-2-2-1">{{deviceStatus.ventilation.running ? '运行中' : '通风'}}</text>
+        </view>
+        <!-- 按钮3: 补光 -->
+        <view class="decision-1-1-2-1 btn3 {{deviceStatus.light.running ? 'active' : ''}}" bindtap="toggleLight">
+          <view class="decision-1-1-2-1-1">
+            <image wx:if="{{deviceStatus.light.running}}" src="img-health/light.png" style="width:15px;height:20px;" />
+            <image wx:else src="img-health/light1.png" style="width:15px;height:20px;" />
+          </view>
+        </view>
+        <view class="decision-1-1-2-2 btn3-label {{deviceStatus.light.running ? 'active' : ''}}" bindtap="toggleLight">
+          <text class="decision-1-1-2-2-1">{{deviceStatus.light.running ? '运行中' : '补光'}}</text>
+        </view>
+        <!-- 按钮4: 施肥 -->
+        <view class="decision-1-1-2-1 btn4 {{deviceStatus.fertilizer.running ? 'active' : ''}}" bindtap="toggleFertilizer">
+          <view class="decision-1-1-2-1-1">
+            <image wx:if="{{deviceStatus.fertilizer.running}}" src="img-health/fertilizer.png" style="width:17px;height:25px;" />
+            <image wx:else src="img-health/fertilizer1.png" style="width:17px;height:25px;" />
+          </view>
+        </view>
+        <view class="decision-1-1-2-2 btn4-label {{deviceStatus.fertilizer.running ? 'active' : ''}}" bindtap="toggleFertilizer">
+          <text class="decision-1-1-2-2-1">{{deviceStatus.fertilizer.running ? '运行中' : '施肥'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 1.2: 系统状态提示卡 -->
+    <!-- 正常状态 -->
+    <view wx:if="{{parkStatus === 'healthy'}}" class="decision-1-2">
+      <view class="decision-1-2-1">
+        <view class="decision-1-2-1-1">
+          <image src="img-health/check.png" style="width:11.67px;height:11.67px;" />
+          <view class="decision-1-2-1-1-2">
+            <text class="decision-1-2-1-1-2-1">系统状态良好</text>
+          </view>
+        </view>
+        <view class="decision-1-2-1-2">
+          <text class="decision-1-2-1-2-1">当前环境参数均处于最优区间，AI模型预测未来24小时植物生长状态极佳，无需人工干预。</text>
+        </view>
+      </view>
+    </view>
+    <!-- 警告状态 -->
+    <view wx:if="{{parkStatus === 'warning' && abnormalType === 'light'}}" class="decision-1-2 decision-1-2-warning">
+      <view class="decision-1-2-1">
+        <view class="decision-1-2-1-1">
+          <text class="decision-1-2-1-1-1">!</text>
+          <view class="decision-1-2-1-1-2">
+            <text class="decision-1-2-1-1-2-1 decision-1-2-warning-text">光照调节建议</text>
+          </view>
+        </view>
+        <view class="decision-1-2-1-2">
+          <text class="decision-1-2-1-2-1">{{lightAdvice}}</text>
+        </view>
+        <view class="decision-1-2-1-btn decision-1-2-1-btn-warning" bindtap="toggleLight">{{lightTag}} · 开启遮阳棚</view>
+      </view>
+    </view>
+    <!-- 危机状态 -->
+    <view wx:if="{{parkStatus === 'danger' && abnormalType === 'soil'}}" class="decision-1-2 decision-1-2-danger">
+      <view class="decision-1-2-1">
+        <view class="decision-1-2-1-1">
+          <text class="decision-1-2-1-1-1">!!</text>
+          <view class="decision-1-2-1-1-2">
+            <text class="decision-1-2-1-1-2-1 decision-1-2-danger-text">紧急补钾建议</text>
+          </view>
+        </view>
+        <view class="decision-1-2-1-2">
+          <text class="decision-1-2-1-2-1">{{soilAdvice}}</text>
+        </view>
+        <view class="decision-1-2-1-btn decision-1-2-1-btn-danger">立即补水</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 底部固定导航 ===================== -->
+  <view class="bottom-nav-1">
+    <!-- 首页 -->
+    <view class="bottom-nav-1-item active" bindtap="goHome">
+      <view class="bottom-nav-1-item-1">
+        <view class="bottom-nav-1-item-1-1"></view>
+        <view class="bottom-nav-1-item-2">
+          <image wx:if="{{true}}" src="img-health/home.png" style="width:18px;height:18px;" />
+        </view>
+        <view class="bottom-nav-1-item-3">
+          <text>首页</text>
+        </view>
+      </view>
+    </view>
+    <!-- 远程 -->
+    <view class="bottom-nav-1-item" bindtap="goRemote">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/control1.png" style="width:15.55px;height:23px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>远程</text>
+      </view>
+    </view>
+    <!-- 我的 -->
+    <view class="bottom-nav-1-item" bindtap="goMine">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/me1.png" style="width:16px;height:16px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>我的</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 园区选择器弹窗 ===================== -->
+  <view class="modal-overlay" wx:if="{{showParkPicker}}" catchtap="hideParkPicker">
+    <view class="park-picker-modal" catchtap="stopPropagation">
+      <text class="picker-title">选择园区</text>
+      <block wx:for="{{parkList}}" wx:key="id">
+        <view class="picker-item {{(item.id == currentParkId) || (String(item.id) == String(currentParkId)) ? 'selected' : ''}}" catchtap="selectPark" data-id="{{item.id}}">
+          <view class="picker-item-info">
+            <text class="picker-item-name">{{item.name || item.displayName || item.gardenName}}</text>
+            <text class="picker-item-addr">{{item.address || item.displayName || ''}}</text>
+          </view>
+          <view class="picker-item-status {{item.statusClass || 'green'}}">
+            <text>{{item.displayStatus || '健康'}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</view>

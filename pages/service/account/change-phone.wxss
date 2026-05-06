@@ -1,0 +1,265 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #F0F8F5 0%, #FFFFFF 100%);
+  padding-bottom: 60rpx;
+}
+
+/* ===================== 顶部导航栏 ===================== */
+.navbar {
+  height: 128rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 40rpx;
+  padding-bottom: 20rpx;
+  position: relative;
+}
+
+.navbar-back {
+  position: absolute;
+  left: 40rpx;
+  bottom: 20rpx;
+  width: 88rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.navbar-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #333333;
+  letter-spacing: 2rpx;
+}
+
+/* ===================== 顶部图标与标题区 ===================== */
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80rpx;
+}
+
+.top-icon {
+  width: 176rpx;
+  height: 176rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 64rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+}
+
+.top-icon-img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 32rpx;
+}
+
+.top-title {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 24rpx;
+  letter-spacing: 4rpx;
+}
+
+.top-subtitle {
+  font-size: 36rpx;
+  color: #666666;
+  margin-bottom: 80rpx;
+}
+
+/* ===================== 表单卡片 ===================== */
+.form-card {
+  width: 90%;
+  background: #FFFFFF;
+  border-radius: 48rpx;
+  padding: 64rpx 48rpx;
+  margin: 0 auto;
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+/* ===================== 输入框组 ===================== */
+.form-group {
+  margin-bottom: 48rpx;
+}
+
+.form-label {
+  display: block;
+  font-size: 32rpx;
+  color: #333333;
+  margin-bottom: 16rpx;
+  font-weight: 400;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #F5F5F5;
+  border-radius: 56rpx;
+  height: 112rpx;
+  padding: 0 40rpx;
+  border: 4rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.input-wrapper:focus-within {
+  border-color: #00A896;
+  background: #FFFFFF;
+}
+
+.input-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.input-field {
+  flex: 1;
+  height: 112rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.input-field::placeholder {
+  color: #AAAAAA;
+}
+
+.input-right-icon {
+  width: 40rpx;
+  height: 40rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-right-icon image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* ===================== 验证码输入框 ===================== */
+.code-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.code-input {
+  flex: 1;
+}
+
+.send-code-btn {
+  height: 112rpx;
+  padding: 0 36rpx;
+  background: #D1F0EB;
+  border: none;
+  border-radius: 56rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #00A896;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.send-code-btn::after {
+  border: none;
+}
+
+.send-code-btn[disabled] {
+  color: #AAAAAA;
+  background: #EEEEEE;
+}
+
+/* ===================== 确认修改按钮 ===================== */
+.btn-reset {
+  width: 100%;
+  height: 112rpx;
+  background: #00A896;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 56rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 64rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 168, 150, 0.35);
+  letter-spacing: 4rpx;
+}
+
+.btn-reset::after {
+  border: none;
+}
+
+/* ===================== 安全提示栏 ===================== */
+.security-notice {
+  width: 90%;
+  background: #E8F7F5;
+  border-radius: 48rpx;
+  padding: 32rpx 40rpx;
+  margin: 48rpx auto 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 24rpx;
+}
+
+.notice-icon {
+  width: 40rpx;
+  height: 40rpx;
+  background: #00A896;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.notice-text {
+  font-size: 32rpx;
+  color: #666666;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ===================== 消息提示 ===================== */
+.message-toast {
+  position: fixed;
+  top: 120rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 24rpx 48rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.message-toast.success {
+  background: #00A896;
+  color: white;
+}
+
+.message-toast.error {
+  background: #E53935;
+  color: white;
+}

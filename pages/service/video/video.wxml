@@ -1,0 +1,286 @@
+<view class="page">
+  <!-- ===================== 顶部导航栏 ===================== -->
+  <view class="nav-bar" style="padding-top:{{statusBarHeight}}px;">
+    <view class="nav-inner">
+      <view class="nav-back" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <view class="nav-center">
+        <text class="nav-title">实时视频</text>
+      </view>
+      <view class="nav-right"></view>
+    </view>
+  </view>
+
+  <!-- ===================== 页面主体（刘海屏偏移） ===================== -->
+  <view class="page-body" style="padding-top:{{statusBarHeight + 96}}rpx;">
+
+    <!-- ===================== 园区选择栏 ===================== -->
+    <view class="park-selector" bindtap="showParkPicker">
+      <text class="park-name">{{gardenName}}</text>
+      <text class="park-arrow">▼</text>
+    </view>
+
+    <!-- ===================== 实时视频播放器 ===================== -->
+    <view class="video-card">
+      <!-- 视频封面层（播放前） -->
+      <view class="video-cover" wx:if="{{!isPlaying}}">
+        <!-- 顶部信息条 -->
+        <view class="cover-top-bar">
+          <view class="live-tag">
+            <view class="live-dot"></view>
+            <text class="live-text">LIVE</text>
+          </view>
+          <text class="camera-name-text">{{camera.name}}</text>
+          <text class="rec-time-text">REC {{currentTime}}</text>
+        </view>
+        <!-- 中央暂停按钮 -->
+        <view class="center-play-btn" bindtap="togglePlay">
+          <text class="play-icon-text">▶</text>
+        </view>
+      </view>
+
+      <!-- 视频播放器 -->
+      <video
+        id="myVideo"
+        class="video-player"
+        src="{{videoSrc}}"
+        autoplay="{{isPlaying}}"
+        show-center-play-btn="{{false}}"
+        show-progress="{{false}}"
+        show-fullscreen-btn="{{false}}"
+        enable-progress-gesture="{{false}}"
+        object-fit="fill"
+        bindplay="onPlay"
+        bindpause="onPause"
+        bindended="onEnded"
+        binderror="onError"
+        bindtimeupdate="onTimeUpdate"
+      ></video>
+
+      <!-- 底部控制栏（覆盖在视频上） -->
+      <view class="video-controls-bar" wx:if="{{isPlaying}}">
+        <view class="ctrl-btn" bindtap="takePhoto">
+          <text class="ctrl-icon">📷</text>
+        </view>
+        <view class="ctrl-btn" bindtap="startRecord">
+          <text class="ctrl-icon">⏺</text>
+        </view>
+        <view class="ctrl-volume">
+          <text class="ctrl-icon">🔊</text>
+          <slider
+            class="volume-slider"
+            value="{{volume}}"
+            min="0"
+            max="100"
+            activeColor="#00A896"
+            backgroundColor="rgba(255,255,255,0.3)"
+            block-color="#FFFFFF"
+            block-size="12"
+            bindchange="onVolumeChange"
+          />
+        </view>
+        <view class="hd-btn">高清</view>
+        <view class="ctrl-btn" bindtap="toggleFullScreen">
+          <text class="ctrl-icon">⛶</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- ===================== 远程决策控制模块 ===================== -->
+    <view class="section-title">远程决策控制</view>
+
+    <!-- ===================== 卡片1：智能灌溉系统 ===================== -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-wrap">
+          <text class="card-icon">💧</text>
+        </view>
+        <text class="card-title">智能灌溉系统</text>
+        <view class="status-tag on">
+          <text>ON</text>
+          <text class="tag-sep">-</text>
+          <text>自动</text>
+        </view>
+      </view>
+
+      <!-- 数据行 -->
+      <view class="data-row">
+        <view class="data-item">
+          <text class="data-label">当前土壤湿度</text>
+          <view class="data-value-row">
+            <text class="data-big green">{{irrigation.currentHumidity}}</text>
+            <text class="data-unit">%</text>
+          </view>
+        </view>
+        <view class="data-item">
+          <text class="data-label">流量 (L/MIN)</text>
+          <view class="data-value-row">
+            <text class="data-big">{{irrigation.flow}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="slider-row">
+        <slider
+          class="device-slider"
+          value="{{irrigation.targetFlow}}"
+          min="0"
+          max="100"
+          active-color="#00A896"
+          background-color="#E8F7F5"
+          block-color="#FFFFFF"
+          block-size="24"
+          bindchange="onSliderChange"
+          data-key="irrigation"
+        />
+      </view>
+    </view>
+
+    <!-- ===================== 卡片2：肥料补充 ===================== -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-wrap">
+          <text class="card-icon">🧪</text>
+        </view>
+        <text class="card-title">肥料补充</text>
+        <view class="status-tag on">
+          <text>ON</text>
+          <text class="tag-sep">-</text>
+          <text>自动</text>
+        </view>
+      </view>
+
+      <!-- 数据行 -->
+      <view class="data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <view class="data-value-row">
+            <text class="data-big yellow">{{fertilizer.ec}} mS/cm | {{fertilizer.ph}} pH</text>
+          </view>
+        </view>
+        <view class="data-item">
+          <text class="data-label">补给量</text>
+          <view class="data-value-row">
+            <text class="data-big">{{fertilizer.amount}}</text>
+            <text class="data-unit">%</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="slider-row">
+        <slider
+          class="device-slider"
+          value="{{fertilizer.targetAmount}}"
+          min="0"
+          max="100"
+          active-color="#00A896"
+          background-color="#E8F7F5"
+          block-color="#FFFFFF"
+          block-size="24"
+          bindchange="onSliderChange"
+          data-key="fertilizer"
+        />
+      </view>
+    </view>
+
+    <!-- ===================== 卡片3：智能通风 ===================== -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-wrap">
+          <text class="card-icon">🌀</text>
+        </view>
+        <text class="card-title">智能通风</text>
+        <view class="status-tag on">
+          <text>ON</text>
+          <text class="tag-sep">-</text>
+          <text>自动</text>
+        </view>
+      </view>
+
+      <!-- 数据行 -->
+      <view class="data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <view class="data-value-row">
+            <text class="data-big green">{{ventilation.status}}</text>
+          </view>
+        </view>
+        <view class="data-item">
+          <text class="data-label">风机转速</text>
+          <view class="data-value-row">
+            <text class="data-big">{{ventilation.rpm}}</text>
+            <text class="data-unit">%</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="slider-row">
+        <slider
+          class="device-slider"
+          value="{{ventilation.targetRpm}}"
+          min="0"
+          max="100"
+          active-color="#00A896"
+          background-color="#E8F7F5"
+          block-color="#FFFFFF"
+          block-size="24"
+          bindchange="onSliderChange"
+          data-key="ventilation"
+        />
+      </view>
+    </view>
+
+    <!-- ===================== 卡片4：光照控制系统 ===================== -->
+    <view class="device-card">
+      <view class="card-header">
+        <view class="card-icon-wrap">
+          <text class="card-icon">☀️</text>
+        </view>
+        <text class="card-title">光照控制系统</text>
+        <view class="status-tag on">
+          <text>ON</text>
+          <text class="tag-sep">-</text>
+          <text>自动</text>
+        </view>
+      </view>
+
+      <!-- 数据行 -->
+      <view class="data-row">
+        <view class="data-item">
+          <text class="data-label">当前状态</text>
+          <view class="data-value-row">
+            <text class="data-big green">{{light.status}}</text>
+          </view>
+        </view>
+        <view class="data-item">
+          <text class="data-label">亮度值</text>
+          <view class="data-value-row">
+            <text class="data-big">{{light.brightness}}</text>
+            <text class="data-unit">LUX</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="slider-row">
+        <slider
+          class="device-slider"
+          value="{{light.targetBrightness}}"
+          min="0"
+          max="1000"
+          active-color="#00A896"
+          background-color="#E8F7F5"
+          block-color="#FFFFFF"
+          block-size="24"
+          bindchange="onSliderChange"
+          data-key="light"
+        />
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<view class="modal-overlay" wx:if="{{visible}}" bindtap="onOverlayTap">
+  <view class="modal-card" catchtap="stopProp">
+
+    <!-- 顶部图标与标题 -->
+    <view class="modal-top">
+      <view class="modal-avatar">
+        <image class="modal-avatar-img" src="/images/malou-bg.png" mode="aspectFill"></image>
+      </view>
+      <text class="modal-title">{{title}}</text>
+      <text class="modal-subtitle">{{subtitle}}</text>
+    </view>
+
+    <!-- 表单内容 -->
+    <view class="modal-form">
+      <!-- 手机号 -->
+      <view class="form-group" wx:if="{{mode === 'phone'}}">
+        <view class="current-phone" wx:if="{{currentPhone}}">
+          <text class="current-phone-label">当前手机号：{{currentPhone}}</text>
+        </view>
+        <text class="form-label">新手机号码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/phone-icon.png" mode="aspectFit"></image>
+          <input class="input-field" type="tel" maxlength="11" placeholder="请输入新手机号" value="{{phone}}" bindinput="onPhoneInput" />
+        </view>
+      </view>
+
+      <!-- 验证码 -->
+      <view class="form-group" wx:if="{{mode === 'phone' || mode === 'password'}}">
+        <text class="form-label">短信验证码</text>
+        <view class="code-wrapper">
+          <view class="input-wrapper code-input">
+            <image class="input-icon" src="/images/shield-icon.png" mode="aspectFit"></image>
+            <input class="input-field" type="text" maxlength="6" placeholder="请输入验证码" value="{{code}}" bindinput="onCodeInput" />
+          </view>
+          <button class="send-code-btn" bindtap="onSendCode" disabled="{{countdown > 0}}">
+            {{countdown > 0 ? countdown + 's' : '获取验证码'}}
+          </button>
+        </view>
+      </view>
+
+      <!-- 原密码（重置密码模式）-->
+      <view class="form-group" wx:if="{{mode === 'password'}}">
+        <text class="form-label">原密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/lock-icon.png" mode="aspectFit"></image>
+          <input class="input-field" type="text" password placeholder="请输入原密码" value="{{oldPwd}}" bindinput="onOldPwdInput" />
+        </view>
+      </view>
+
+      <!-- 新密码（重置密码模式）-->
+      <view class="form-group" wx:if="{{mode === 'password'}}">
+        <text class="form-label">新密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/lock-icon2.png" mode="aspectFit"></image>
+          <input class="input-field" type="text" password placeholder="请设置新密码" value="{{newPwd}}" bindinput="onNewPwdInput" />
+        </view>
+      </view>
+
+      <!-- 确认密码（重置密码模式）-->
+      <view class="form-group" wx:if="{{mode === 'password'}}">
+        <text class="form-label">确认新密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/lock-cycle-icon.png" mode="aspectFit"></image>
+          <input class="input-field" type="text" password placeholder="请再次输入新密码" value="{{confirmPwd}}" bindinput="onConfirmPwdInput" />
+        </view>
+      </view>
+
+      <!-- 提交按钮 -->
+      <view class="submit-btn" bindtap="onSubmit">
+        <text>{{submitText}}</text>
+      </view>
+    </view>
+
+    <!-- 关闭按钮 -->
+    <view class="modal-close" bindtap="onClose">
+      <text class="close-icon">✕</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/wx-login/wx-login",
+    "pages/phone-login/phone-login",
+    "pages/home/home",
+    "pages/analysis/analysis",
+    "pages/analysis/alarm/alarm",
+    "pages/remote/remote",
+    "pages/mine/mine",
+    "pages/reset-password/reset-password",
+    "pages/video/video",
+    "pages/service/account/account",
+    "pages/service/account/change-phone",
+    "pages/service/settings/settings",
+    "pages/service/about/about",
+    "pages/service/help/help",
+    "pages/service/help/ai-chat/ai-chat",
+    "pages/park/edit-park-list/edit-park-list",
+    "pages/park/edit-park/edit-park",
+    "pages/park/add-park/add-park",
+    "pages/index/index"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于获取园区真实位置"
+    },
+    "scope.record": {
+      "desc": "用于语音输入提问"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,249 @@
+<view class="page font-{{_fontIndex}} {{_isDark ? 'dark' : ''}}" style="padding-top:{{statusBarHeight + 50}}px;--base-size:{{_baseFontSize}};">
+  <!-- ===================== 顶部导航 ===================== -->
+  <view class="top-nav">
+    <view class="nav-content" style="padding-top: {{statusBarHeight + 20}}px;">
+      <view class="nav-left">
+        <image class="leaf-icon" src="img-health/leaf.png" style="width:17.04px;height:17.02px;" />
+        <view class="park-selector" bindtap="showParkPicker" style="margin-top: -12rpx;">
+          <text class="park-name" style="{{titleStyle}}">{{currentPark.name}}</text>
+          <image class="arrow" src="img-health/down arrow.png" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 大标题 ===================== -->
+  <view class="page-title" style="font-size:24px!important;font-weight:800!important;font-style:normal!important;color:#171D1B!important;font-family:Manrope!important;line-height:32px!important;letter-spacing:-0.6px!important;">远程控制</view>
+
+  <!-- ===================== 卡片1：智能灌溉系统 ===================== -->
+  <view class="device-card {{devices.irrigation.highlighted ? 'highlighted' : ''}}">
+    <view class="card-header">
+      <view class="card-header-left">
+        <view class="card-icon-wrap">
+          <image src="/pages/register/img/water.png" style="width:16px;height:20px;" />
+        </view>
+        <text class="card-title">智能灌溉系统</text>
+      </view>
+      <view class="card-header-right">
+        <view class="status-tag {{devices.irrigation.on ? 'on' : 'off'}}" bindtap="toggleAuto" data-key="irrigation">
+          <text>{{devices.irrigation.on ? 'ON' : 'OFF'}}</text>
+          <text class="tag-sep">-</text>
+          <text>{{devices.irrigation.auto ? '自动' : '手动'}}</text>
+        </view>
+        <view class="card-sub">最后灌溉：14:30</view>
+      </view>
+    </view>
+
+    <!-- 数据行 -->
+    <view class="data-row">
+      <view class="data-item">
+        <view style="display:flex;align-items:center;flex-direction:row;margin-bottom:13.5px;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase">当前状态</text>
+          <text class="data-badge {{devices.irrigation.isIrrigationOk ? 'suitable' : 'warn'}}" style="margin-left:17px;">{{devices.irrigation.isIrrigationOk ? '适宜' : '偏低'}}</text>
+        </view>
+        <view class="data-value-row">
+          <text style="color: #00A896; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">{{devices.irrigation.currentHumidity}}</text>
+          <text style="color: #00A896; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">%</text>
+        </view>
+      </view>
+      <view class="data-item data-item-right">
+        <view class="data-value-row" style="flex-direction:column;align-items:flex-end;gap:0;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 10px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase;">目标流量 (L/MIN)</text>
+          <text style="color: #171D1B; font-family: Inter; font-size: 20px; font-style: normal; font-weight: 600; line-height: 28px; margin-top: 4px;">{{devices.irrigation.targetFlow}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="slider-row">
+      <slider class="device-slider" value="{{devices.irrigation.targetFlow}}" min="0" max="100" activeColor="#00A896" backgroundColor="#E8F7F5" blockColor="#FFFFFF" blockSize="24" bindchange="onSliderChange" data-key="irrigation" />
+    </view>
+  </view>
+
+  <!-- ===================== 卡片2：营养液补充 ===================== -->
+  <view class="device-card {{devices.nutrient.highlighted ? 'highlighted' : ''}}">
+    <view class="card-header">
+      <view class="card-header-left">
+        <view class="card-icon-wrap">
+          <image src="/pages/register/img/fertilizer.png" style="width:17px;height:25px;" />
+        </view>
+        <text class="card-title">肥料补充</text>
+      </view>
+      <view class="card-header-right">
+        <view class="status-tag {{devices.nutrient.on ? 'on' : 'off'}}" bindtap="toggleAuto" data-key="nutrient">
+          <text>{{devices.nutrient.on ? 'ON' : 'OFF'}}</text>
+          <text class="tag-sep">-</text>
+          <text>{{devices.nutrient.auto ? '自动' : '手动'}}</text>
+        </view>
+        <view class="card-sub">最后补给：14:30</view>
+      </view>
+    </view>
+
+    <!-- 数据行 -->
+    <view class="data-row">
+      <view class="data-item">
+        <view style="display:flex;align-items:center;flex-direction:row;margin-bottom:13.5px;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase">当前状态</text>
+          <text class="data-badge {{currentParkId == 6 ? 'critical' : 'suitable'}}" style="margin-left:17px;">{{currentParkId == 6 ? '危机' : '适宜'}}</text>
+        </view>
+        <view class="data-value-row">
+          <text style="color: {{currentParkId == 6 ? '#DC2626' : '#00A896'}}; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">{{devices.nutrient.amount}}</text><text style="color: {{currentParkId == 6 ? '#DC2626' : '#00A896'}}; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">%</text>
+        </view>
+      </view>
+      <view class="data-item data-item-right">
+        <view class="data-value-row" style="flex-direction:column;align-items:flex-end;gap:0;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 10px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase;">目标补给量</text>
+          <text style="color: #171D1B; font-family: Inter; font-size: 20px; font-style: normal; font-weight: 600; line-height: 28px; margin-top: 4px;">{{devices.nutrient.targetAmount}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="slider-row">
+      <slider class="device-slider" value="{{devices.nutrient.targetAmount}}" min="0" max="100" activeColor="#00A896" backgroundColor="#E8F7F5" blockColor="#FFFFFF" blockSize="24" bindchange="onSliderChange" data-key="nutrient" />
+    </view>
+  </view>
+
+  <!-- ===================== 卡片3：智能通风 ===================== -->
+  <view class="device-card {{devices.ventilation.highlighted ? 'highlighted' : ''}}">
+    <view class="card-header">
+      <view class="card-header-left">
+        <view class="card-icon-wrap">
+          <image src="/pages/register/img/wind.png" style="width:20px;height:17px;" />
+        </view>
+        <text class="card-title">智能通风</text>
+      </view>
+      <view class="card-header-right">
+        <view class="status-tag {{devices.ventilation.on ? 'on' : 'off'}}" bindtap="toggleAuto" data-key="ventilation">
+          <text>{{devices.ventilation.on ? 'ON' : 'OFF'}}</text>
+          <text class="tag-sep">-</text>
+          <text>{{devices.ventilation.auto ? '自动' : '手动'}}</text>
+        </view>
+        <view class="card-sub">最后通风：14:30</view>
+      </view>
+    </view>
+
+    <!-- 数据行 -->
+    <view class="data-row">
+      <view class="data-item">
+        <view style="display:flex;align-items:center;flex-direction:row;margin-bottom:13.5px;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase">当前状态</text>
+          <text class="data-badge suitable" style="margin-left:17px;">适宜</text>
+        </view>
+        <view class="data-value-row">
+          <text style="color: #00A896; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">{{weatherData.windText}}</text>
+        </view>
+      </view>
+      <view class="data-item data-item-right">
+        <view class="data-value-row" style="flex-direction:column;align-items:flex-end;gap:0;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 10px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase;">目标转速</text>
+          <text style="color: #171D1B; font-family: Inter; font-size: 20px; font-style: normal; font-weight: 600; line-height: 28px; margin-top: 4px;">{{devices.ventilation.targetRpm}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="slider-row">
+      <slider class="device-slider" value="{{devices.ventilation.targetRpm}}" min="0" max="100" activeColor="#00A896" backgroundColor="#E8F7F5" blockColor="#FFFFFF" blockSize="24" bindchange="onSliderChange" data-key="ventilation" />
+    </view>
+  </view>
+
+  <!-- ===================== 卡片4：智能补光系统 ===================== -->
+  <view class="device-card {{devices.light.highlighted ? 'highlighted' : ''}}">
+    <view class="card-header">
+      <view class="card-header-left">
+        <view class="card-icon-wrap">
+          <image src="/pages/register/img/sun.png" style="width:15px;height:20px;" />
+        </view>
+        <text class="card-title">智能补光系统</text>
+      </view>
+      <view class="card-header-right">
+        <view class="status-tag {{devices.light.on ? 'on' : 'off'}}" bindtap="toggleAuto" data-key="light">
+          <text>{{devices.light.on ? 'ON' : 'OFF'}}</text>
+          <text class="tag-sep">-</text>
+          <text>{{devices.light.auto ? '自动' : '手动'}}</text>
+        </view>
+        <view class="card-sub">最后补光：14:30</view>
+      </view>
+    </view>
+
+    <!-- 数据行 -->
+    <view class="data-row">
+      <view class="data-item">
+        <view style="display:flex;align-items:center;flex-direction:row;margin-bottom:13.5px;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 14px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase">当前状态</text>
+          <text class="data-badge {{currentParkId == 5 ? 'warn' : 'suitable'}}" style="margin-left:17px;">{{currentParkId == 5 ? '偏高' : '适宜'}}</text>
+        </view>
+        <view class="data-value-row">
+          <text style="color: {{currentParkId == 5 ? '#FBBF24' : '#00A896'}}; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;">{{devices.light.brightness}}</text><text style="color: {{currentParkId == 5 ? '#FBBF24' : '#00A896'}}; font-family: Manrope; font-size: 16px; font-style: normal; font-weight: 700; line-height: 28px;"> lux</text>
+        </view>
+      </view>
+      <view class="data-item data-item-right">
+        <view class="data-value-row" style="flex-direction:column;align-items:flex-end;gap:0;">
+          <text style="color: #3C4946; font-family: Manrope; font-size: 10px; font-style: normal; font-weight: 500; line-height: 15px; letter-spacing: 0.5px; text-transform: uppercase;">目标亮度</text>
+          <text style="color: #171D1B; font-family: Inter; font-size: 20px; font-style: normal; font-weight: 600; line-height: 28px; margin-top: 4px;">{{devices.light.targetBrightness}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="slider-row">
+      <slider class="device-slider" value="{{devices.light.targetBrightness}}" min="0" max="25000" activeColor="#00A896" backgroundColor="#E8F7F5" blockColor="#FFFFFF" blockSize="24" bindchange="onSliderChange" data-key="light" />
+    </view>
+
+
+  </view>
+
+  <!-- ===================== 底部固定导航 ===================== -->
+  <view class="bottom-nav-1">
+    <!-- 首页 -->
+    <view class="bottom-nav-1-item" bindtap="goHome">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/home.png" style="width:18px;height:18px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>首页</text>
+      </view>
+    </view>
+    <!-- 远程 -->
+    <view class="bottom-nav-1-item active">
+      <view class="bottom-nav-1-item-1">
+        <view class="bottom-nav-1-item-1-1"></view>
+        <view class="bottom-nav-1-item-2">
+          <image src="img-health/control1.png" style="width:15.55px;height:23px;" />
+        </view>
+        <view class="bottom-nav-1-item-3">
+          <text>远程</text>
+        </view>
+      </view>
+    </view>
+    <!-- 我的 -->
+    <view class="bottom-nav-1-item" bindtap="goMine">
+      <view class="bottom-nav-1-item-2-1">
+        <image src="img-health/me1.png" style="width:16px;height:16px;" />
+      </view>
+      <view class="bottom-nav-1-item-2-2">
+        <text>我的</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===================== 添加园区弹窗 ===================== -->
+  <!-- ===================== 园区选择器弹窗 ===================== -->
+  <view class="modal-overlay" wx:if="{{showParkPicker}}" catchtap="hideParkPicker">
+    <view class="park-picker-modal" catchtap="stopPropagation">
+      <text class="picker-title">选择园区</text>
+      <block wx:for="{{parkList}}" wx:key="id">
+        <view class="picker-item {{String(item.id) == String(currentParkId) ? 'selected' : ''}}" catchtap="selectPark" data-id="{{item.id}}">
+          <view class="picker-item-info">
+            <text class="picker-item-name">{{item.name}}</text>
+            <text class="picker-item-addr">{{item.address}}</text>
+          </view>
+          <view class="picker-item-status {{item.statusClass}}">
+            <text>{{item.displayStatus || '健康'}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

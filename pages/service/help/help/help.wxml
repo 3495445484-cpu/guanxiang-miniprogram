@@ -1,0 +1,104 @@
+<view class="page">
+
+  <!-- 左上角页面标题（固定顶部左侧） -->
+  <view class="page-title-bar">
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-btn-icon" src="/icons/back.svg" mode="aspectFit"/>
+    </view>
+    <text class="page-title-txt">帮助与支持</text>
+    <view class="page-title-right"></view>
+  </view>
+
+  <!-- 页面主体 -->
+  <scroll-view class="page-body" scroll-y="true">
+
+    <!-- Banner -->
+    <view class="banner">
+      <view class="banner-text">
+        <text class="banner-t1">码喽莞香团队</text>
+        <text class="banner-t2">推动莞香文化走向全中国</text>
+        <text class="banner-t3">官方服务时间：周一至周日 09:00 - 21:00</text>
+      </view>
+      <view class="banner-icon">
+        <image class="banner-icon-img" src="/icons/service.svg" mode="aspectFit"/>
+      </view>
+    </view>
+
+    <!-- 常见问题 -->
+    <view class="faq-block">
+      <view class="faq-header">
+        <text class="faq-header-txt">常见问题</text>
+        <view class="faq-more" bindtap="goMoreFaq">
+          <text class="faq-more-txt">查看更多</text>
+        </view>
+      </view>
+
+      <view class="faq-card">
+        <!-- item1 -->
+        <view class="faq-item" bindtap="goFaqDetail" data-id="1">
+          <view class="faq-icon-bg">
+            <image class="faq-icon-img" src="/icons/book.svg" mode="aspectFit"/>
+          </view>
+          <view class="faq-item-content">
+            <text class="faq-item-title">如何快速切换管理园区？</text>
+            <text class="faq-item-sub">多园区高效管理指南</text>
+          </view>
+          <image class="faq-item-arrow" src="/icons/arrow.svg" mode="aspectFit"/>
+        </view>
+        <view class="faq-divider"></view>
+
+        <!-- item2 -->
+        <view class="faq-item" bindtap="goFaqDetail" data-id="2">
+          <view class="faq-icon-bg">
+            <image class="faq-icon-img" src="/icons/warning.svg" mode="aspectFit"/>
+          </view>
+          <view class="faq-item-content">
+            <text class="faq-item-title">传感器数据异常怎么办？</text>
+            <text class="faq-item-sub">常见故障排查步骤</text>
+          </view>
+          <image class="faq-item-arrow" src="/icons/arrow.svg" mode="aspectFit"/>
+        </view>
+        <view class="faq-divider"></view>
+
+        <!-- item3 -->
+        <view class="faq-item" bindtap="goFaqDetail" data-id="3">
+          <view class="faq-icon-bg">
+            <image class="faq-icon-img" src="/icons/setting.svg" mode="aspectFit"/>
+          </view>
+          <view class="faq-item-content">
+            <text class="faq-item-title">如何修改环境阈值预警？</text>
+            <text class="faq-item-sub">自定义种植环境安全范围</text>
+          </view>
+          <image class="faq-item-arrow" src="/icons/arrow.svg" mode="aspectFit"/>
+        </view>
+        <view class="faq-divider"></view>
+
+        <!-- item4 -->
+        <view class="faq-item" bindtap="goFaqDetail" data-id="4">
+          <view class="faq-icon-bg">
+            <image class="faq-icon-img" src="/icons/reset_pwd.svg" mode="aspectFit"/>
+          </view>
+          <view class="faq-item-content">
+            <text class="faq-item-title">忘记密码如何重置？</text>
+            <text class="faq-item-sub">账号安全与自助找回</text>
+          </view>
+          <image class="faq-item-arrow" src="/icons/arrow.svg" mode="aspectFit"/>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+
+  <!-- 底部操作按钮 -->
+  <view class="bottom-btns">
+    <view class="btn-chat" bindtap="onOnlineService">
+      <image class="btn-chat-icon" src="/icons/chat.svg" mode="aspectFit"/>
+      <text class="btn-chat-txt">在线咨询</text>
+    </view>
+    <view class="btn-call" bindtap="onPhoneHotline">
+      <image class="btn-call-icon" src="/icons/phone.svg" mode="aspectFit"/>
+      <text class="btn-call-txt">电话热线</text>
+    </view>
+  </view>
+
+</view>
